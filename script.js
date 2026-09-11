@@ -15,6 +15,15 @@ function entrar() {
     }
 }
 
+function mostrarSenha() {
+    const senha = document.getElementById("senha");
+
+    if (senha.type === "password") {
+        senha.type = "text";
+    } else {
+        senha.type = "password";
+    }
+}
 
 const inicio = new Date("2026-02-13T00:00:00");
 
@@ -67,15 +76,24 @@ function mostrarAudio() {
 }
 
 function voltarInicio() {
-
     const telaSenha = document.getElementById("telaSenha");
     const senha = document.getElementById("senha");
     const erro = document.getElementById("erro");
 
+    const surpresa = document.getElementById("surpresa");
+    const audioBox = document.getElementById("audioBox");
+
+
+    surpresa.style.display = "none";
+    audioBox.style.display = "none";
+
+   
     telaSenha.style.display = "flex";
 
+  
     senha.value = "";
     erro.textContent = "";
+
 
     window.scrollTo(0, 0);
 }

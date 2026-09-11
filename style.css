@@ -298,3 +298,29 @@ button:hover {
 
     cursor: pointer;
 }
+
+.campo-senha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.campo-senha input {
+    flex: 1;
+    width: auto;
+    margin: 0;
+}
+
+.campo-senha button {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: #ffe5ec;
+    color: #e63964;
+    font-size: 20px;
+    cursor: pointer;
+}
