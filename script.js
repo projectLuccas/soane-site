@@ -711,11 +711,11 @@ document.getElementById("totalFotos").textContent =
 ========================================= */
 
 /*
-    EDITE AS RECLAMAÇÕES AQUI
+    EDITE AS RECLAMAÇÕES
 */
 
 const reclamacoesSoso = [
-    "Você tá chato",
+    "Você tá chato ",
     "Você tá demorando para responder",
     "Você tá errado",
     "Você não tá me dando atenção"
