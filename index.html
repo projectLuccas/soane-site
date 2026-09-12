@@ -51,7 +51,7 @@
 
         <div class="coracao">❤️</div>
 
-        <h1>Antes de entrar...</h1>
+        <h1>Quiz sobre nosso relacionamento</h1>
 
         <p>Vamos ver se você conhece a gente :)</p>
 
@@ -62,6 +62,10 @@
             <button onclick="responder(1, 'b')">B) 12/03/2026</button>
             <button onclick="responder(1, 'c')">C) 13/06/2026</button>
             <button onclick="responder(1, 'd')">D) 31/03/2026</button>
+
+              <button class="botao-voltar-jogos" onclick="voltarParaJogos()">
+        🎮 Voltar para Jogos
+    </button>
         </div>
 
         <div id="pergunta2" class="pergunta">
@@ -73,8 +77,12 @@
             <button onclick="responder(2, 'd')">D) Hospital do Suburbio</button>
         
         <button class="botao-voltar" onclick="voltarPergunta(2)">
-    ← Voltar
+    ← Voltar pra pergunta 1
 </button>
+
+  <button class="botao-voltar-jogos" onclick="voltarParaJogos()">
+        🎮 Voltar para Jogos
+    </button>
         </div>
 
         <div id="pergunta3" class="pergunta">
@@ -85,9 +93,13 @@
             <button onclick="responder(3, 'c')">C) Feio</button>
             <button onclick="responder(3, 'd')">D) Nojento</button>
         <button class="botao-voltar" onclick="voltarPergunta(3)">
-    ← Voltar
+    ← Voltar pra pergunta 2
 </button>
         
+  <button class="botao-voltar-jogos" onclick="voltarParaJogos()">
+        🎮 Voltar para Jogos
+    </button>
+
         </div>
 
         <p id="resultadoQuiz"></p>
@@ -112,7 +124,7 @@
         <div class="opcoes-menu">
 
             <button onclick="abrirPaginaPrincipal()">
-                ❤️ Nossa história
+                ❤️ Nossa História
                 <small>Ver a página principal</small>
             </button>
 
@@ -122,12 +134,12 @@
             </button>
 
             <button onclick="abrirEstatisticas()">
-                📊 Nossas estatísticas
+                📊 Nossas Estatísticas
                 <small>Ver nossos números</small>
             </button>
 
             <button onclick="abrirMomentos()">
-                📸 Nossos momentos
+                📸 Nossos Momentos
                 <small>Ver nossa galeria</small>
             </button>
 
@@ -135,6 +147,12 @@
                 🙄 Zoada da Soso
                 <small>Tem alguma reclamação contra Luquinhas? Largue o doce</small>
             </button>
+
+            <button onclick="abrirJogos()">
+                🎮 Jogos com Neguinha
+                <small>Brincadeirinhas com soso</small>
+            </button>
+
 
    </div>         
 
@@ -277,6 +295,9 @@
 
         </div>
 
+
+
+
         <div class="caixa-reclamacoes">
 
             <h2>Qual o problema da vez?</h2>
@@ -346,7 +367,29 @@
 
 </div>
 
+<div id="paginaJogos" class="pagina-extra">
 
+    <div class="caixa-extra">
+
+        <div class="icone-extra">🎮</div>
+
+        <h1>Jogos com a Soso</h1>
+
+        <p>
+            Aqui ficam nossas brincadeiras ❤️
+        </p>
+
+        <button onclick="abrirQuiz()">
+            🧠 Quiz do casal
+        </button>
+
+        <button onclick="voltarAoMenu()">
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
 
 
 <div id="paginaMensagem" class="pagina-extra">
@@ -523,9 +566,7 @@
         🔄 Voltar para o início
     </button>
 
-    <button onclick="irParaQuiz()">
-        💕 Voltar para o quiz
-    </button>
+ 
 
 </div>
 

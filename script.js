@@ -6,7 +6,11 @@ function entrar() {
 
         sessionStorage.setItem("soaneDesbloqueado", "true");
 
-        iniciarQuiz();
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "flex";
+
+        salvarTelaAtual("menu");
 
     } else {
         erro.textContent = "Senha incorreta... qual é seu apelido? Dica: 4 letras";
@@ -70,18 +74,25 @@ function responder(pergunta, resposta) {
 
 function finalizarQuiz() {
 
-    document.getElementById("resultadoQuiz").textContent =
-        "🎉 Você acertou tudo! Sabia que você conhecia a gente ❤️";
+    document.getElementById("resultadoQuiz").innerHTML = `
+        <p>🎉 Neguinha é sabida dms kkkkkkkkk tá de parabens meu amor! ❤️</p>
 
-    setTimeout(() => {
+        <button class="botao-voltar-jogos" onclick="voltarParaJogos()">
+    🎮 Voltar para Jogos
+</button>
+    `;
 
-        document.getElementById("quiz").style.display = "none";
+}
 
-        document.getElementById("menu").style.display = "flex";
+function voltarParaJogos() {
 
-        window.scrollTo(0, 0);
+    document.getElementById("quiz").style.display = "none";
 
-    }, 1800);
+    document.getElementById("paginaJogos").style.display = "flex";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("jogos");
 }
 
 function voltarPergunta(perguntaAtual) {
@@ -499,6 +510,7 @@ document.addEventListener("click", function(event) {
 function abrirPaginaPrincipal() {
 
     document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
 
     document.getElementById("site").style.display = "block";
 
@@ -510,26 +522,26 @@ function abrirPaginaPrincipal() {
 function voltarAoMenu() {
 
     document.getElementById("site").style.display = "none";
-
     document.getElementById("paginaMomentos").style.display = "none";
-
     document.getElementById("paginaMensagem").style.display = "none";
-
     document.getElementById("paginaSoane").style.display = "none";
-
     document.getElementById("paginaSurpresa").style.display = "none";
-
     document.getElementById("paginaReclamacoes").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
 
     document.getElementById("menu").style.display = "flex";
 
     window.scrollTo(0, 0);
 
-salvarTelaAtual("menu");
+    salvarTelaAtual("menu");
 }
 
 function abrirMomentos() {
+
     document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+
     document.getElementById("paginaMomentos").style.display = "flex";
 
     fotoAtual = 0;
@@ -782,21 +794,63 @@ function carregarReclamacoes() {
     });
 }
 
+function abrirQuiz() {
 
+    document.getElementById("paginaJogos").style.display = "none";
+
+    document.getElementById("quiz").style.display = "flex";
+
+    document.getElementById("pergunta1").style.display = "block";
+    document.getElementById("pergunta2").style.display = "none";
+    document.getElementById("pergunta3").style.display = "none";
+
+    document.getElementById("resultadoQuiz").textContent = "";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("quiz");
+}
 /*
     Abre a página
 */
+function abrirJogos() {
+
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "flex";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("jogos");
+}
+
+function abrirQuiz() {
+
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("quiz").style.display = "flex";
+
+    document.getElementById("pergunta1").style.display = "block";
+    document.getElementById("pergunta2").style.display = "none";
+    document.getElementById("pergunta3").style.display = "none";
+
+    document.getElementById("resultadoQuiz").textContent = "";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("quiz");
+}
+
+
 
 function abrirReclamacoes() {
 
     document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
 
     document.getElementById("paginaReclamacoes").style.display = "flex";
 
     carregarReclamacoes();
 
     document.getElementById("resultadoReclamacao").style.display = "none";
-
     document.getElementById("botaoCompartilhar").style.display = "none";
 
     window.scrollTo(0, 0);
@@ -1062,6 +1116,38 @@ window.addEventListener("load", function () {
         document.getElementById("menu").style.display = "flex";
 
     }
+
+    /* =========================
+   JOGOS
+========================= */
+
+if (telaAtual === "jogos") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "flex";
+
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+if (telaAtual === "quiz") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("quiz").style.display = "flex";
+
+    document.getElementById("pergunta1").style.display = "block";
+    document.getElementById("pergunta2").style.display = "none";
+    document.getElementById("pergunta3").style.display = "none";
+
+}
+
+
 
     /* =========================
        NOSSA HISTÓRIA

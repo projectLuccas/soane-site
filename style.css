@@ -1859,3 +1859,27 @@ p {
         width: 100%;
     }
 }
+
+.botao-voltar-jogos {
+    display: block;
+    width: 100%;
+    margin-top: 15px !important;
+    padding: 12px 20px !important;
+
+    border: none !important;
+    border-radius: 12px;
+
+    background: rgb(48, 8, 192) !important;
+    color: white !important;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-voltar-jogos:hover {
+    background: #b1a0a0 !important;
+    transform: scale(1.05);
+}
