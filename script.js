@@ -498,9 +498,14 @@ function voltarAoMenu() {
     document.getElementById("site").style.display = "none";
 
     document.getElementById("paginaMomentos").style.display = "none";
+
     document.getElementById("paginaMensagem").style.display = "none";
+
     document.getElementById("paginaSoane").style.display = "none";
+
     document.getElementById("paginaSurpresa").style.display = "none";
+
+    document.getElementById("paginaReclamacoes").style.display = "none";
 
     document.getElementById("menu").style.display = "flex";
 
@@ -699,3 +704,301 @@ function criarCoracoesGaleria() {
 
 document.getElementById("totalFotos").textContent =
     fotosGaleria.length;
+
+
+    /* =========================================
+   CENTRAL DE RECLAMAÇÕES DA SOSO
+========================================= */
+
+/*
+    EDITE AS RECLAMAÇÕES AQUI
+*/
+
+const reclamacoesSoso = [
+    "Você tá chato Lucas",
+    "Você tá demorando para responder Lucas",
+    "Você tá errado Lucas",
+    "Você não tá me dando atenção Lucas"
+];
+
+
+/*
+    Guarda as reclamações escolhidas
+*/
+
+let reclamacoesSelecionadas = [];
+
+let textoReclamacaoOutro = "";
+
+
+/*
+    Cria as opções automaticamente
+*/
+
+function carregarReclamacoes() {
+
+    const lista = document.getElementById("listaReclamacoes");
+
+    lista.innerHTML = "";
+
+    reclamacoesSoso.forEach((reclamacao, index) => {
+
+        lista.innerHTML += `
+            <div class="opcao-reclamacao">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="checkbox-reclamacao"
+                        value="${reclamacao}"
+                    >
+
+                    <span>${reclamacao}</span>
+
+                </label>
+
+            </div>
+        `;
+
+    });
+}
+
+
+/*
+    Abre a página
+*/
+
+function abrirReclamacoes() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaReclamacoes").style.display = "flex";
+
+    carregarReclamacoes();
+
+    document.getElementById("resultadoReclamacao").style.display = "none";
+
+    document.getElementById("botaoCompartilhar").style.display = "none";
+
+    window.scrollTo(0, 0);
+}
+
+
+/*
+    Ativa/desativa o campo "Outro"
+*/
+
+function alternarOutro() {
+
+    const checkbox = document.getElementById("checkboxOutro");
+
+    const campo = document.getElementById("textoOutro");
+
+    if (checkbox.checked) {
+
+        campo.disabled = false;
+
+        campo.focus();
+
+    } else {
+
+        campo.disabled = true;
+
+        campo.value = "";
+
+    }
+}
+
+
+/*
+    Registra a reclamação
+*/
+
+function registrarReclamacao() {
+
+    const checkboxes =
+        document.querySelectorAll(".checkbox-reclamacao");
+
+    reclamacoesSelecionadas = [];
+
+    checkboxes.forEach((checkbox) => {
+
+        if (checkbox.checked) {
+
+            reclamacoesSelecionadas.push(
+                checkbox.value
+            );
+
+        }
+
+    });
+
+
+    const checkboxOutro =
+        document.getElementById("checkboxOutro");
+
+    const campoOutro =
+        document.getElementById("textoOutro");
+
+
+    textoReclamacaoOutro =
+        campoOutro.value.trim();
+
+
+    /*
+        Verifica se ela não selecionou nada
+    */
+
+    if (
+        reclamacoesSelecionadas.length === 0 &&
+        !(
+            checkboxOutro.checked &&
+            textoReclamacaoOutro !== ""
+        )
+    ) {
+
+        alert(
+            "Soso, você precisa escolher pelo menos uma reclamação"
+        );
+
+        return;
+    }
+
+
+    /*
+        Cria o resultado
+    */
+
+    const resultado =
+        document.getElementById("resultadoReclamacao");
+
+    let html = `
+        <h2>
+            🙄 Reclamação registrada!
+        </h2>
+
+        <p>
+            <strong>Reclamações selecionadas:</strong>
+        </p><br>
+
+        <ul class="lista-resultado-reclamacao">
+    `;
+
+
+    reclamacoesSelecionadas.forEach((reclamacao) => {
+
+        html += `
+            <li>
+                ☑️ ${reclamacao}
+            </li>
+        `;
+
+    });
+
+
+    html += `</ul>`;
+
+
+    /*
+        Adiciona o "Outro"
+    */
+
+    if (
+        checkboxOutro.checked &&
+        textoReclamacaoOutro !== ""
+    ) {
+
+        html += `
+            <div class="mensagem-outro">
+
+                <strong>
+                    ✍️ Reclamação personalizada:
+                </strong>
+
+                <br><br>
+
+                "${textoReclamacaoOutro}"
+
+            </div>
+        `;
+
+    }
+
+
+    html += `
+        <p style="margin-top: 15px; text-align: center;">
+            Agora Lucas vai ter que ouvir a agonia 🙄
+        </p>
+    `;
+
+
+    resultado.innerHTML = html;
+
+    resultado.style.display = "block";
+
+
+    /*
+        Mostra botão do WhatsApp
+    */
+
+    document.getElementById("botaoCompartilhar").style.display =
+        "block";
+
+
+    /*
+        Rola até o resultado
+    */
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/*
+    Compartilhar pelo WhatsApp
+*/
+
+function compartilharReclamacao() {
+
+    let mensagem =
+        "CENTRAL DE RECLAMAÇÕES DA SOSO\n\n";
+
+    mensagem +=
+        "Olá, Lucas. Soso tem algumas coisas para reclamar de você:\n\n";
+
+    reclamacoesSelecionadas.forEach((reclamacao) => {
+
+        mensagem +=
+            reclamacao + "\n";
+
+    });
+
+    if (textoReclamacaoOutro !== "") {
+
+        mensagem +=
+            "\nReclamação personalizada:\n";
+
+        mensagem +=
+            "\"" + textoReclamacaoOutro + "\"\n";
+
+    }
+
+    mensagem +=
+        "\nReclamação feita oficialmente pela Zoada da Soso.";
+
+
+    const mensagemCodificada =
+        encodeURIComponent(mensagem);
+
+    const url =
+        "https://wa.me/5571988214998?text=" +
+        mensagemCodificada;
+    window.open(
+        url,
+        "_blank"
+    );
+}

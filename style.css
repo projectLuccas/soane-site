@@ -1639,3 +1639,223 @@ p {
         box-sizing: border-box;
     }
 }
+
+/* =========================================
+   CENTRAL DE RECLAMAÇÕES DA SOSO
+========================================= */
+
+.reclamacoes-container {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    padding: 25px 18px 35px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.reclamacoes-topo {
+    margin-bottom: 20px;
+}
+
+.icone-reclamacoes {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.reclamacoes-topo h1 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.reclamacoes-topo p {
+    color: white;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.caixa-reclamacoes {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.20);
+    text-align: left;
+}
+
+.caixa-reclamacoes h2 {
+    color: #e63964;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.instrucao-reclamacoes {
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.opcao-reclamacao {
+    background: #fff5f7;
+    border: 2px solid #ffd5df;
+    border-radius: 14px;
+    padding: 13px;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.opcao-reclamacao:hover {
+    border-color: #ff8ba5;
+}
+
+.opcao-reclamacao label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+}
+
+.opcao-reclamacao input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    accent-color: #e63964;
+    cursor: pointer;
+}
+
+.outro-opcao {
+    margin-top: 5px;
+}
+
+.outro-opcao textarea {
+    width: 100%;
+    min-height: 90px;
+    margin-top: 12px;
+    padding: 12px;
+    border: 2px solid #ffd5df;
+    border-radius: 12px;
+    resize: vertical;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.outro-opcao textarea:focus {
+    border-color: #e63964;
+}
+
+.outro-opcao textarea:disabled {
+    background: #eeeeee;
+    cursor: not-allowed;
+}
+
+.botao-registrar-reclamacao {
+    width: 100%;
+    margin-top: 10px;
+    background: #e63964;
+    color: white;
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.botao-registrar-reclamacao:hover {
+    background: #d92d56;
+}
+
+.resultado-reclamacao {
+    display: none;
+    background: white;
+    margin-top: 18px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+.resultado-reclamacao h2 {
+    color: #e63964;
+    text-align: center;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.lista-resultado-reclamacao {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.lista-resultado-reclamacao li {
+    margin-bottom: 8px;
+    color: #444;
+    line-height: 1.4;
+}
+
+.mensagem-outro {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff5f7;
+    border-radius: 12px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.botoes-reclamacao {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.botoes-reclamacao button {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+    padding: 12px 10px;
+    font-size: 14px;
+}
+
+.botao-voltar-reclamacao {
+    background: white;
+    color: #e63964;
+}
+
+.botao-whatsapp {
+    background: #25d366;
+    color: white;
+}
+
+.botao-whatsapp:hover {
+    background: #1ebe5d;
+}
+
+@media (max-width: 600px) {
+
+    .reclamacoes-container {
+        width: 100%;
+        max-width: 430px;
+        padding: 20px 10px 30px;
+        box-sizing: border-box;
+    }
+
+    .reclamacoes-topo h1 {
+        font-size: 27px;
+    }
+
+    .caixa-reclamacoes {
+        padding: 17px;
+    }
+
+    .botoes-reclamacao {
+        flex-direction: column;
+    }
+
+    .botoes-reclamacao button {
+        width: 100%;
+    }
+}

@@ -130,6 +130,11 @@
                 <small>Ver nossa galeria</small>
             </button>
 
+            <button onclick="abrirReclamacoes()">
+                🙄 Zoada da Soso
+                <small>Tem alguma reclamação contra Luquinhas? Largue o doce</small>
+            </button>
+
    </div>         
 
 <div id="painelEstatisticas" class="painel-estatisticas">
@@ -254,6 +259,94 @@
     </div>
 
 </div>
+
+<div id="paginaReclamacoes" class="pagina-extra">
+
+    <div class="reclamacoes-container">
+
+        <div class="reclamacoes-topo">
+
+            <div class="icone-reclamacoes">🙄</div>
+
+            <h1>Central de Reclamações</h1>
+
+            <p>
+                Área exclusiva para reclamações da minha princesa 🙄
+            </p>
+
+        </div>
+
+        <div class="caixa-reclamacoes">
+
+            <h2>Qual o problema da vez?</h2>
+
+            <p class="instrucao-reclamacoes">
+                Pode selecionar mais de uma opção, problemática 🙄
+            </p>
+
+            <div id="listaReclamacoes"></div>
+
+            <div class="opcao-reclamacao outro-opcao">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        id="checkboxOutro"
+                        onchange="alternarOutro()"
+                    >
+
+                    <span>Outro</span>
+                </label>
+
+                <textarea
+                    id="textoOutro"
+                    placeholder="Digite sua reclamação..."
+                    disabled
+                ></textarea>
+
+            </div>
+
+            <button
+                class="botao-registrar-reclamacao"
+                onclick="registrarReclamacao()"
+            >
+                📋 Registrar reclamação
+            </button>
+
+        </div>
+
+        <div
+            id="resultadoReclamacao"
+            class="resultado-reclamacao"
+        >
+
+        </div>
+
+        <div class="botoes-reclamacao">
+
+            <button
+                onclick="voltarAoMenu()"
+                class="botao-voltar-reclamacao"
+            >
+                🏠 Voltar ao menu
+            </button>
+
+            <button
+                onclick="compartilharReclamacao()"
+                class="botao-whatsapp"
+                id="botaoCompartilhar"
+            >
+                📲 Compartilhar com Lucas
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 
 <div id="paginaMensagem" class="pagina-extra">
 
