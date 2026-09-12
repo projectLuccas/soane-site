@@ -715,10 +715,10 @@ document.getElementById("totalFotos").textContent =
 */
 
 const reclamacoesSoso = [
-    "Você tá chato Lucas",
-    "Você tá demorando para responder Lucas",
-    "Você tá errado Lucas",
-    "Você não tá me dando atenção Lucas"
+    "Você tá chato",
+    "Você tá demorando para responder",
+    "Você tá errado",
+    "Você não tá me dando atenção"
 ];
 
 
