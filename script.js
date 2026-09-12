@@ -67,13 +67,13 @@ function responder(pergunta, resposta) {
 function finalizarQuiz() {
 
     document.getElementById("resultadoQuiz").textContent =
-        "Parabens, você acertou tudo! Sabia que você conhecia a gente";
+        "🎉 Você acertou tudo! Sabia que você conhecia a gente ❤️";
 
     setTimeout(() => {
 
         document.getElementById("quiz").style.display = "none";
 
-        document.getElementById("site").style.display = "block";
+        document.getElementById("menu").style.display = "flex";
 
         window.scrollTo(0, 0);
 
@@ -188,8 +188,11 @@ function calcularDiasJuntos() {
         diferenca / (1000 * 60 * 60 * 24)
     );
 
-    document.getElementById("diasEstatistica").textContent = dias;
+    const elementoDias = document.getElementById("diasEstatistica");
 
+    if (elementoDias) {
+        elementoDias.textContent = dias;
+    }
 }
 
 
@@ -200,12 +203,11 @@ function calcularDiasJuntos() {
 
 function abrirEstatisticas() {
 
-    calcularDiasJuntos();
-
     atualizarEstatisticas();
 
-    document.getElementById("painelEstatisticas").style.display = "flex";
+    calcularDiasJuntos();
 
+    document.getElementById("painelEstatisticas").style.display = "flex";
 }
 
 
@@ -481,3 +483,219 @@ document.addEventListener("click", function(event) {
     }
 
 });
+
+function abrirPaginaPrincipal() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("site").style.display = "block";
+
+    window.scrollTo(0, 0);
+}
+
+function voltarAoMenu() {
+
+    document.getElementById("site").style.display = "none";
+
+    document.getElementById("paginaMomentos").style.display = "none";
+    document.getElementById("paginaMensagem").style.display = "none";
+    document.getElementById("paginaSoane").style.display = "none";
+    document.getElementById("paginaSurpresa").style.display = "none";
+
+    document.getElementById("menu").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+function abrirMomentos() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaMomentos").style.display = "flex";
+
+    fotoAtual = 0;
+    atualizarGaleria();
+
+    window.scrollTo(0, 0);
+}
+
+
+function abrirMensagem() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaMensagem").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+
+function abrirModoSoane() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaSoane").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+
+function abrirSurpresa() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaSurpresa").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+/* =========================================
+   GALERIA - NOSSOS MOMENTOS
+========================================= */
+
+const fotosGaleria = [
+    {
+        imagem: "foto1.jpeg",
+        titulo: "A princesa do HS 🏥",
+        texto: "Linda, maravilhosa, minha branquinha no trabalho",
+        selo: "TRABALHADORA👸"
+    },
+
+    {
+        imagem: "foto2.jpeg",
+        titulo: "A gatinha pequena 📸",
+        texto: "Desde pequenininha com a carinha bontinha e gaiata ❤️",
+        selo: "LINDINHA 👧"
+    },
+
+    {
+        imagem: "foto3.jpeg",
+        titulo: "A bela e a Fera ❤️",
+        texto: "Me estressou no dia falando do passado, mas eu amo kkkkkkkkk",
+        selo: "ME FAZ RAIVA😡"
+    },
+
+    {
+        imagem: "foto4.jpeg",
+        titulo: "Mimando a bonitinha 👜",
+        texto: "Essa é linda, eu segurando a bolsa da bonitinha e ela fazendo graça",
+        selo: "MIMADA 💅🏻"
+    },
+
+    {
+        imagem: "foto5.jpeg",
+        titulo: "Gaiatinha desde pequena 🤡",
+        texto: "A mesma coisa de hoje, gaiatinha, bonitinha, linda, te amo ❤️",
+        selo: "MINHA FAVORITA ❤️"
+    }
+];
+
+let fotoAtual = 0;
+
+
+function atualizarGaleria() {
+
+    const foto = fotosGaleria[fotoAtual];
+
+    const imagem = document.getElementById("fotoGaleria");
+    const titulo = document.getElementById("tituloFoto");
+    const texto = document.getElementById("textoFoto");
+    const selo = document.querySelector(".selo-foto");
+
+    imagem.classList.remove("foto-trocando");
+
+    void imagem.offsetWidth;
+
+    imagem.src = foto.imagem;
+
+    titulo.textContent = foto.titulo;
+
+    texto.textContent = foto.texto;
+
+    selo.textContent = foto.selo;
+
+    document.getElementById("numeroFoto").textContent =
+        fotoAtual + 1;
+
+    imagem.classList.add("foto-trocando");
+}
+
+
+function fotoProxima() {
+
+    fotoAtual++;
+
+    if (fotoAtual >= fotosGaleria.length) {
+        fotoAtual = 0;
+    }
+
+    atualizarGaleria();
+}
+
+
+function fotoAnterior() {
+
+    fotoAtual--;
+
+    if (fotoAtual < 0) {
+        fotoAtual = fotosGaleria.length - 1;
+    }
+
+    atualizarGaleria();
+}
+
+
+function interagirFoto() {
+
+    const imagem = document.getElementById("fotoGaleria");
+
+    imagem.classList.add("clicada");
+
+    criarCoracoesGaleria();
+
+    setTimeout(() => {
+        imagem.classList.remove("clicada");
+    }, 500);
+}
+
+
+function criarCoracoesGaleria() {
+
+    const coracoes = ["❤️", "💕", "💖", "😂"];
+
+    for (let i = 0; i < 8; i++) {
+
+        const coracao = document.createElement("div");
+
+        coracao.textContent =
+            coracoes[
+                Math.floor(Math.random() * coracoes.length)
+            ];
+
+        coracao.style.position = "fixed";
+
+        coracao.style.left =
+            (50 + Math.random() * 30 - 15) + "%";
+
+        coracao.style.top =
+            (55 + Math.random() * 15) + "%";
+
+        coracao.style.fontSize =
+            (18 + Math.random() * 15) + "px";
+
+        coracao.style.pointerEvents = "none";
+
+        coracao.style.zIndex = "99999";
+
+        coracao.style.animation =
+            "subirCoracaoGaleria 1.2s ease forwards";
+
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 1200);
+    }
+}
+
+
+document.getElementById("totalFotos").textContent =
+    fotosGaleria.length;

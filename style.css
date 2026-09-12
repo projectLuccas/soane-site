@@ -27,6 +27,7 @@ body {
     text-align: center;
 }
 
+
 .heart {
     font-size: 60px;
 
@@ -470,7 +471,35 @@ button:hover {
     transform: scale(1.05);
 }
 
+.fechar-estatisticas,
+.fechar-calendario {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 
+    width: 35px;
+    height: 35px;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #000000 !important;
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.fechar-estatisticas:hover,
+.fechar-calendario:hover {
+    background: transparent !important;
+    color: #000000 !important;
+    transform: none;
+}
 /* ============================= */
 /* PAINEL */
 /* ============================= */
@@ -540,36 +569,6 @@ button:hover {
 
 }
 
-
-/* ============================= */
-/* FECHAR */
-/* ============================= */
-
-.fechar-estatisticas {
-
-    position: absolute;
-
-    top: 1px;
-    right: 15px;
-
-    width: 20px;
-    height: 4pc;
-
-    border: none;
-
-
-
-    color: #e63964;
-
-    font-size: 20px;
-
-    cursor: pointer;
-}
-
-
-/* ============================= */
-/* TÍTULO */
-/* ============================= */
 
 .icone-estatisticas {
 
@@ -789,26 +788,6 @@ button:hover {
 
 }
 
-.fechar-calendario {
-    position: absolute;
-
-    top: 15px;
-    right: 15px;
-
-    width: 35px;
-    height: 35px;
-
-    border: none;
-    border-radius: 50%;
-
-    
-    color: #e63964;
-
-    font-size: 18px;
-
-    cursor: pointer;
-}
-
 .icone-calendario {
     font-size: 50px;
     margin-bottom: 5px;
@@ -880,4 +859,472 @@ button:hover {
         opacity: 0;
         transform: translateY(-100px) scale(1.5);
     }
+}
+
+.tela-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+
+    z-index: 9997;
+
+    overflow-y: auto;
+}
+
+.caixa-menu {
+    background: white;
+
+    width: 90%;
+    max-width: 430px;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+    animation: aparecerMenu 0.5s ease;
+}
+
+@keyframes aparecerMenu {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.caixa-menu h1 {
+    color: #e63964;
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.caixa-menu > p {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.opcoes-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opcoes-menu button {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 2px solid #ffb3c1;
+    border-radius: 15px;
+
+    background: #ffe5ec;
+
+    color: #e63964;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+.opcoes-menu button:hover {
+    background: #ffb3c1;
+    transform: scale(1.02);
+}
+
+.opcoes-menu button small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #777;
+
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.pagina-extra {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+
+    z-index: 9996;
+
+    overflow-y: auto;
+}
+
+.caixa-extra {
+    background: white;
+
+    width: 90%;
+    max-width: 420px;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+    animation: aparecerMenu 0.4s ease;
+}
+
+.icone-extra {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.caixa-extra h1 {
+    color: #e63964;
+    margin-bottom: 15px;
+}
+
+.caixa-extra p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.caixa-extra button {
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #e63964;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.caixa-extra button:hover {
+    transform: scale(1.03);
+}
+
+/* X DOS PAINÉIS - FORÇAR VISIBILIDADE */
+#painelEstatisticas .fechar-estatisticas,
+#painelCalendario .fechar-calendario {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #e63964 !important;
+    -webkit-text-fill-color: #e63964 !important;
+
+    opacity: 1 !important;
+
+    font-size: 20px !important;
+    font-weight: bold !important;
+
+    cursor: pointer;
+}
+
+#painelEstatisticas .fechar-estatisticas:hover,
+#painelCalendario .fechar-calendario:hover {
+    background: transparent !important;
+    color: #e63964 !important;
+    -webkit-text-fill-color: #e63964 !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* =========================================
+   GALERIA - NOSSOS MOMENTOS
+========================================= */
+
+.galeria-container {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+
+    padding: 25px 18px 35px;
+
+    text-align: center;
+}
+
+.galeria-topo {
+    margin-bottom: 20px;
+}
+
+.icone-galeria {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.galeria-topo h1 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.galeria-topo p {
+    color: white;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* ÁREA DA FOTO */
+
+.foto-area {
+    width: 100%;
+}
+
+/* MOLDURA */
+
+.moldura-foto {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 4 / 5;
+
+    padding: 10px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+
+    transition: transform 0.3s ease;
+}
+
+.moldura-foto:hover {
+    transform: scale(1.02);
+}
+
+.moldura-foto img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    display: block;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+/* efeito quando clicar */
+
+.moldura-foto img.clicada {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* SELO */
+
+.selo-foto {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    background: #ff315b;
+    color: white;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    transform: rotate(-4deg);
+}
+
+/* LEGENDA */
+
+.legenda-foto {
+    background: white;
+
+    margin-top: 15px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.15);
+}
+
+.legenda-foto h2 {
+    color: #e63964;
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+.legenda-foto p {
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+/* CONTADOR */
+
+.contador-fotos {
+    margin-top: 15px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+/* BOTÕES */
+
+.botoes-galeria {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.botoes-galeria button {
+    flex: 1;
+
+    margin-top: 0;
+
+    padding: 12px 10px;
+
+    font-size: 14px;
+}
+
+/* BOTÃO DE INTERAÇÃO */
+
+.botao-interacao {
+    width: 100%;
+
+    margin-top: 12px;
+
+    background: #e63964;
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.15);
+}
+
+.botao-interacao:hover {
+    background: #d92d56;
+}
+
+/* VOLTAR */
+
+.botao-voltar-galeria {
+    width: 100%;
+
+    margin-top: 12px;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #e63964;
+}
+
+/* ANIMAÇÃO DA FOTO */
+
+@keyframes trocarFoto {
+    0% {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.foto-trocando {
+    animation: trocarFoto 0.35s ease;
+}
+
+@keyframes subirCoracaoGaleria {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) scale(1.4);
+    }
+
+}
+
+.botoes-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes-principal button {
+    margin-top: 25px;
 }
