@@ -31,6 +31,58 @@
 
 </div>
 
+<div id="quiz" class="tela-quiz">
+
+    <div class="caixa-quiz">
+
+        <div class="coracao">❤️</div>
+
+        <h1>Antes de entrar...</h1>
+
+        <p>Vamos ver se você conhece a gente :)</p>
+
+        <div id="pergunta1" class="pergunta">
+            <h2>1. Qual o dia que eu te entreguei o anel? (laele)</h2>
+
+            <button onclick="responder(1, 'a')">A) 13/04/2026</button>
+            <button onclick="responder(1, 'b')">B) 12/03/2026</button>
+            <button onclick="responder(1, 'c')">C) 13/06/2026</button>
+            <button onclick="responder(1, 'd')">D) 31/03/2026</button>
+        </div>
+
+        <div id="pergunta2" class="pergunta">
+            <h2>2. Qual a <strong>NOSSA</strong> segunda casa?</h2>
+
+            <button onclick="responder(2, 'a')">A) São João do Cabrito</button>
+            <button onclick="responder(2, 'b')">B) Cardeal da Silva</button>
+            <button onclick="responder(2, 'c')">C) Ribeira</button>
+            <button onclick="responder(2, 'd')">D) Hospital do Suburbio</button>
+        
+        <button class="botao-voltar" onclick="voltarPergunta(2)">
+    ← Voltar
+</button>
+        </div>
+
+        <div id="pergunta3" class="pergunta">
+            <h2>3. O que seu namorado é?</h2>
+
+            <button onclick="responder(3, 'a')">A) Chato</button>
+            <button onclick="responder(3, 'b')">B) Gostoso, lindo, maravilhoso!</button>
+            <button onclick="responder(3, 'c')">C) Feio</button>
+            <button onclick="responder(3, 'd')">D) Nojento</button>
+        <button class="botao-voltar" onclick="voltarPergunta(3)">
+    ← Voltar
+</button>
+        
+        </div>
+
+        <p id="resultadoQuiz"></p>
+
+    </div>
+
+</div>
+
+
 <div id="site">
 
 
@@ -121,6 +173,7 @@
 
 <div class="voltar">
     <button onclick="voltarInicio()"> Voltar para o início</button>
+    <button onclick="irParaQuiz()"> Voltar para o quiz</button>
 </div>
 
 

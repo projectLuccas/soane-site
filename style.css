@@ -283,20 +283,25 @@ button:hover {
 
 .voltar {
     margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .voltar button {
     padding: 12px 20px;
     border: none;
     border-radius: 10px;
-
     background: white;
     color: #e63964;
-
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
+}
+
+.voltar button:hover {
+    transform: scale(1.03);
 }
 
 .campo-senha {
@@ -323,4 +328,101 @@ button:hover {
     color: #e63964;
     font-size: 20px;
     cursor: pointer;
+}
+
+.tela-quiz {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+
+    z-index: 9998;
+
+    overflow-y: auto;
+}
+
+.caixa-quiz {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+
+    width: 90%;
+    max-width: 400px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.caixa-quiz h1 {
+    color: #e63964;
+    font-size: 27px;
+}
+
+.caixa-quiz p {
+    color: #555;
+}
+
+.pergunta {
+    display: none;
+    margin-top: 25px;
+}
+
+.pergunta h2 {
+    color: #e63964;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.pergunta button {
+    display: block;
+
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 13px;
+
+    border: 2px solid #ffb3c1;
+    border-radius: 12px;
+
+    background: #ffe5ec;
+    color: #e63964;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.pergunta button:hover {
+    background: #ffb3c1;
+    transform: scale(1.02);
+}
+
+#resultadoQuiz {
+    color: #e63964;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.botao-voltar {
+    background: rgb(214, 9, 9) !important;
+    color: #ddd6d8 !important;
+    border: 2px solid #ffb3c1 !important;
+    margin-top: 18px !important;
+}
+
+.botao-voltar:hover {
+    background: #a03753 !important;
 }

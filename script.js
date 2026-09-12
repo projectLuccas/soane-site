@@ -2,17 +2,86 @@ function entrar() {
 
     const senha = document.getElementById("senha").value;
     const erro = document.getElementById("erro");
-    const telaSenha = document.getElementById("telaSenha");
 
     if (senha === "soso") {
 
-        telaSenha.style.display = "none";
+        iniciarQuiz();
 
     } else {
 
         erro.textContent = "Senha incorreta... qual é seu apelido? Dica: 4 letras";
 
     }
+}
+
+let pontos = 0;
+
+const respostasCorretas = {
+    1: "a",
+    2: "c",
+    3: "b"
+};
+
+function iniciarQuiz() {
+
+    document.getElementById("telaSenha").style.display = "none";
+
+    document.getElementById("quiz").style.display = "flex";
+
+    document.getElementById("pergunta1").style.display = "block";
+}
+
+function responder(pergunta, resposta) {
+
+    document.getElementById("resultadoQuiz").textContent = "";
+    if (resposta === respostasCorretas[pergunta]) {
+
+        pontos++;
+
+        document.getElementById("pergunta" + pergunta).style.display = "none";
+
+        if (pergunta < 3) {
+
+            document.getElementById("pergunta" + (pergunta + 1)).style.display = "block";
+
+        } else {
+
+            finalizarQuiz();
+
+        }
+
+    } else {
+
+        document.getElementById("resultadoQuiz").textContent =
+            "Errou palhaça, pega a visão...";
+    }
+}
+
+function finalizarQuiz() {
+
+    document.getElementById("resultadoQuiz").textContent =
+        "Parabens, você acertou tudo! Sabia que você conhecia a gente";
+
+    setTimeout(() => {
+
+        document.getElementById("quiz").style.display = "none";
+
+        document.getElementById("site").style.display = "block";
+
+        window.scrollTo(0, 0);
+
+    }, 1800);
+}
+
+function voltarPergunta(perguntaAtual) {
+
+    document.getElementById("pergunta" + perguntaAtual).style.display = "none";
+
+    const perguntaAnterior = perguntaAtual - 1;
+
+    document.getElementById("pergunta" + perguntaAnterior).style.display = "block";
+
+    document.getElementById("resultadoQuiz").textContent = "";
 }
 
 function mostrarSenha() {
@@ -95,5 +164,28 @@ function voltarInicio() {
     erro.textContent = "";
 
 
+    window.scrollTo(0, 0);
+}
+
+function irParaQuiz() {
+
+    // Esconde o site principal
+    document.getElementById("site").style.display = "none";
+
+    // Mostra o quiz
+    document.getElementById("quiz").style.display = "flex";
+
+    // Esconde todas as perguntas
+    document.getElementById("pergunta1").style.display = "none";
+    document.getElementById("pergunta2").style.display = "none";
+    document.getElementById("pergunta3").style.display = "none";
+
+    // Começa novamente pela pergunta 1
+    document.getElementById("pergunta1").style.display = "block";
+
+    // Limpa mensagens
+    document.getElementById("resultadoQuiz").textContent = "";
+
+    // Volta para o topo
     window.scrollTo(0, 0);
 }
