@@ -1896,3 +1896,11 @@ p {
         overflow-y: auto;
     }
 }
+
+@media (max-width: 600px) {
+
+    body {
+        zoom: 0.90;
+    }
+
+}
