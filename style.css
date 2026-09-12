@@ -1885,22 +1885,19 @@ p {
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
 
-    .caixa-senha,
-    .caixa-quiz,
-    .caixa-extra {
-        max-height: 90vh;
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        height: auto;
+        overflow-x: hidden;
         overflow-y: auto;
     }
-}
-
-@media (max-width: 600px) {
 
     body {
-        zoom: 0.90;
+        display: block;
+        padding: 10px;
     }
 
 }
