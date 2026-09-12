@@ -3,7 +3,11 @@ function entrar() {
     const erro = document.getElementById("erro");
 
     if (senha === "soso") {
+
+        sessionStorage.setItem("soaneDesbloqueado", "true");
+
         iniciarQuiz();
+
     } else {
         erro.textContent = "Senha incorreta... qual é seu apelido? Dica: 4 letras";
     }
@@ -208,6 +212,8 @@ function abrirEstatisticas() {
     calcularDiasJuntos();
 
     document.getElementById("painelEstatisticas").style.display = "flex";
+
+salvarTelaAtual("estatisticas");
 }
 
 
@@ -219,6 +225,8 @@ function abrirEstatisticas() {
 function fecharEstatisticas() {
 
     document.getElementById("painelEstatisticas").style.display = "none";
+
+    salvarTelaAtual("menu");
 
 }
 
@@ -382,13 +390,17 @@ function abrirCalendario() {
     });
 
     painel.style.display = "flex";
+
+    salvarTelaAtual("calendario");
+
 }
 
 
 function fecharCalendario() {
 
     document.getElementById("painelCalendario").style.display = "none";
-
+    
+    salvarTelaAtual("menu");
 }
 
 
@@ -491,6 +503,8 @@ function abrirPaginaPrincipal() {
     document.getElementById("site").style.display = "block";
 
     window.scrollTo(0, 0);
+
+    salvarTelaAtual("site");
 }
 
 function voltarAoMenu() {
@@ -510,6 +524,8 @@ function voltarAoMenu() {
     document.getElementById("menu").style.display = "flex";
 
     window.scrollTo(0, 0);
+
+salvarTelaAtual("menu");
 }
 
 function abrirMomentos() {
@@ -520,6 +536,8 @@ function abrirMomentos() {
     atualizarGaleria();
 
     window.scrollTo(0, 0);
+
+    salvarTelaAtual("momentos");
 }
 
 
@@ -782,6 +800,8 @@ function abrirReclamacoes() {
     document.getElementById("botaoCompartilhar").style.display = "none";
 
     window.scrollTo(0, 0);
+
+    salvarTelaAtual("reclamacoes");
 }
 
 
@@ -1002,3 +1022,196 @@ function compartilharReclamacao() {
         "_blank"
     );
 }
+
+/* =========================================
+   SALVAR TELA ATUAL
+========================================= */
+
+function salvarTelaAtual(tela) {
+    localStorage.setItem("telaAtualSoane", tela);
+}
+
+/* =========================================
+   RESTAURAR TELA AO ATUALIZAR
+========================================= */
+
+/* =========================================
+   RESTAURAR TELA AO ATUALIZAR
+========================================= */
+
+window.addEventListener("load", function () {
+
+    const desbloqueado =
+    sessionStorage.getItem("soaneDesbloqueado");
+
+    const telaAtual =
+        localStorage.getItem("telaAtualSoane");
+
+    if (desbloqueado !== "true") {
+        return;
+    }
+
+    /* =========================
+       MENU
+    ========================= */
+
+    if (telaAtual === "menu") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "flex";
+
+    }
+
+    /* =========================
+       NOSSA HISTÓRIA
+    ========================= */
+
+    if (telaAtual === "site") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("site").style.display = "block";
+
+    }
+
+    /* =========================
+       NOSSOS MOMENTOS
+    ========================= */
+
+    if (telaAtual === "momentos") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("paginaMomentos").style.display = "flex";
+
+        fotoAtual = 0;
+        atualizarGaleria();
+
+    }
+
+    /* =========================
+       RECLAMAÇÕES
+    ========================= */
+
+    if (telaAtual === "reclamacoes") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("paginaReclamacoes").style.display = "flex";
+
+        carregarReclamacoes();
+
+        document.getElementById("resultadoReclamacao").style.display = "none";
+
+        document.getElementById("botaoCompartilhar").style.display = "none";
+
+    }
+
+    /* =========================
+       MENSAGEM
+    ========================= */
+
+    if (telaAtual === "mensagem") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("paginaMensagem").style.display = "flex";
+
+    }
+
+    /* =========================
+       MODO SOANE
+    ========================= */
+
+    if (telaAtual === "soane") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("paginaSoane").style.display = "flex";
+
+    }
+
+    /* =========================
+       SURPRESA
+    ========================= */
+
+    if (telaAtual === "surpresa") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("paginaSurpresa").style.display = "flex";
+
+    }
+
+    /* =========================
+       CALENDÁRIO
+    ========================= */
+
+    if (telaAtual === "calendario") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "flex";
+
+        const painel =
+            document.getElementById("painelCalendario");
+
+        const lista =
+            document.getElementById("listaMomentos");
+
+        lista.innerHTML = "";
+
+        momentos.forEach((momento) => {
+
+            lista.innerHTML += `
+                <div class="momento">
+
+                    <div class="momento-data">
+                        ${momento.emoji} ${momento.data}
+                    </div>
+
+                    <div class="momento-titulo">
+                        ${momento.titulo}
+                    </div>
+
+                    <div class="momento-descricao">
+                        ${momento.descricao}
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+        painel.style.display = "flex";
+
+    }
+
+    /* =========================
+       ESTATÍSTICAS
+    ========================= */
+
+    if (telaAtual === "estatisticas") {
+
+        document.getElementById("telaSenha").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "flex";
+
+        atualizarEstatisticas();
+
+        calcularDiasJuntos();
+
+        document.getElementById("painelEstatisticas").style.display = "flex";
+
+    }
+
+    window.scrollTo(0, 0);
+
+});
