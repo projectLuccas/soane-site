@@ -1460,3 +1460,182 @@ button:hover {
     }
 
 }
+
+/* =========================================
+   AJUSTE GERAL PARA CELULAR
+========================================= */
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+/* Impede elementos de ultrapassarem a tela */
+img,
+video,
+audio,
+input,
+button {
+    max-width: 100%;
+}
+
+/* Evita que textos gigantes estourem a largura */
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        min-height: 100dvh;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Todas as telas ocupam somente a largura disponível */
+    .tela-senha,
+    .tela-quiz,
+    .tela-menu,
+    .pagina-extra {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    /* Caixas principais */
+    .caixa-senha,
+    .caixa-quiz,
+    .caixa-menu,
+    .caixa-extra {
+        width: 100%;
+        max-width: 430px;
+        box-sizing: border-box;
+    }
+
+    /* Botões nunca ultrapassam a tela */
+    button {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* =====================================
+       PÁGINA PRINCIPAL
+    ===================================== */
+
+    #site {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 430px;
+        box-sizing: border-box;
+        padding: 10px 5px;
+        margin: 0 auto;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* =====================================
+       BOTÕES PRINCIPAIS
+    ===================================== */
+
+    .botoes-principal {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .botoes-principal button {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    /* =====================================
+       MENU
+    ===================================== */
+
+    .opcoes-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .opcoes-menu button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* =====================================
+       GALERIA
+    ===================================== */
+
+    .galeria-container {
+        width: 100%;
+        max-width: 430px;
+        box-sizing: border-box;
+        padding: 20px 10px 30px;
+        margin: 0 auto;
+    }
+
+    .moldura-foto {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .moldura-foto img {
+        max-width: 100%;
+    }
+
+    .legenda-foto {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .botoes-galeria {
+        width: 100%;
+    }
+
+    .botoes-galeria button {
+        min-width: 0;
+    }
+
+    /* =====================================
+       MODAIS
+    ===================================== */
+
+    .caixa-estatisticas,
+    .caixa-calendario {
+        width: calc(100% - 24px);
+        max-width: 420px;
+        max-height: 85dvh;
+        box-sizing: border-box;
+    }
+}
