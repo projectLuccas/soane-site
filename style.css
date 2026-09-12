@@ -861,3 +861,23 @@ button:hover {
     font-size: 14px;
     margin-top: 5px;
 }
+
+.coracao-clique {
+    position: fixed;
+    pointer-events: none;
+    font-size: 25px;
+    animation: subirCoracao 1.5s ease-out forwards;
+    z-index: 99999;
+}
+
+@keyframes subirCoracao {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.5);
+    }
+}

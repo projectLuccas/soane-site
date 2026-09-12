@@ -453,3 +453,31 @@ function irParaQuiz() {
     // Volta para o topo
     window.scrollTo(0, 0);
 }
+
+document.addEventListener("click", function(event) {
+
+    const coracoes = ["❤️", "💕", "💖", "💗", "💓"];
+
+    for (let i = 0; i < 3; i++) {
+
+        const coracao = document.createElement("div");
+
+        coracao.classList.add("coracao-clique");
+
+        coracao.textContent =
+            coracoes[Math.floor(Math.random() * coracoes.length)];
+
+        coracao.style.left =
+            (event.clientX + (Math.random() * 40 - 20)) + "px";
+
+        coracao.style.top =
+            (event.clientY + (Math.random() * 40 - 20)) + "px";
+
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 1500);
+    }
+
+});
