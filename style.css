@@ -1883,3 +1883,16 @@ p {
     background: #b1a0a0 !important;
     transform: scale(1.05);
 }
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .caixa-senha,
+    .caixa-quiz,
+    .caixa-extra {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
