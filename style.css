@@ -1328,3 +1328,135 @@ button:hover {
 .botoes-principal button {
     margin-top: 25px;
 }
+
+/* =========================================
+   AJUSTES PARA CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        min-height: 100dvh;
+        overflow-x: hidden;
+    }
+
+    .caixa-senha,
+    .caixa-quiz,
+    .caixa-menu {
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 18px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    button {
+        max-width: 100%;
+        padding: 13px 20px;
+        font-size: 15px;
+    }
+
+    /* MENU */
+
+    .opcoes-menu {
+        width: 100%;
+    }
+
+    .opcoes-menu button {
+        width: 100%;
+    }
+
+    /* PÁGINA PRINCIPAL */
+
+    .container {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    /* BOTÕES DA PÁGINA PRINCIPAL */
+
+    .botoes-principal {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .botoes-principal button {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    /* GALERIA */
+
+    .galeria-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 10px 30px;
+    }
+
+    .galeria-topo h1 {
+        font-size: 27px;
+    }
+
+    .moldura-foto {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        padding: 8px;
+    }
+
+    .legenda-foto {
+        padding: 15px;
+    }
+
+    .legenda-foto h2 {
+        font-size: 18px;
+    }
+
+    .legenda-foto p {
+        font-size: 14px;
+    }
+
+    .botoes-galeria {
+        gap: 8px;
+    }
+
+    .botoes-galeria button {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+
+    /* MODAIS */
+
+    .caixa-estatisticas,
+    .caixa-calendario {
+        width: calc(100% - 24px);
+        max-width: 420px;
+        max-height: 85dvh;
+        padding: 25px 18px;
+    }
+
+    /* PÁGINAS EXTRAS */
+
+    .caixa-extra {
+        width: calc(100% - 20px);
+        padding: 25px 18px;
+    }
+
+}

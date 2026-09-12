@@ -568,7 +568,7 @@ const fotosGaleria = [
 
     {
         imagem: "foto3.jpeg",
-        titulo: "A bela e a Fera ❤️",
+        titulo: "A Bela e a Fera ❤️",
         texto: "Me estressou no dia falando do passado, mas eu amo kkkkkkkkk",
         selo: "ME FAZ RAIVA😡"
     },
