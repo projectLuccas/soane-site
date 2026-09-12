@@ -307,27 +307,42 @@ button:hover {
 .campo-senha {
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: 100%;
-    margin: 15px 0;
+    width: 90%;
+    margin: 15px auto;
+    border: 2px solid #ffb3c1;
+    border-radius: 10px;
+    background: white;
+    padding: 0 10px;
+}
+
+.icone-cadeado {
+    font-size: 20px;
+    margin-right: 8px;
 }
 
 .campo-senha input {
     flex: 1;
-    width: auto;
+    border: none;
+    outline: none;
+    padding: 12px 5px;
+    font-size: 16px;
     margin: 0;
 }
 
-.campo-senha button {
-    width: 45px;
-    height: 45px;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
-    background: #ffe5ec;
-    color: #e63964;
-    font-size: 20px;
+.botao-senha {
+    background: none !important;
+    border: none !important;
+    color: #e63964 !important;
+    padding: 5px !important;
+    margin: 0 !important;
+    font-size: 22px !important;
     cursor: pointer;
+    box-shadow: none !important;
+}
+
+.botao-senha:hover {
+    transform: none !important;
+    background: none !important;
 }
 
 .tela-quiz {
@@ -425,4 +440,424 @@ button:hover {
 
 .botao-voltar:hover {
     background: #a03753 !important;
+}
+
+/* ============================= */
+/* BOTÃO ESTATÍSTICAS */
+/* ============================= */
+
+.botao-estatisticas {
+    margin-top: 20px;
+    padding: 13px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: white;
+    color: #e63964;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+
+    transition: 0.2s;
+}
+
+.botao-estatisticas:hover {
+    transform: scale(1.05);
+}
+
+
+/* ============================= */
+/* PAINEL */
+/* ============================= */
+
+.painel-estatisticas {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.55);
+
+    z-index: 10000;
+
+    overflow-y: auto;
+}
+
+
+/* ============================= */
+/* CAIXA */
+/* ============================= */
+
+.caixa-estatisticas {
+
+    position: relative;
+
+    background: white;
+
+    width: 90%;
+    max-width: 420px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+    animation: aparecerEstatisticas 0.4s ease;
+}
+
+
+@keyframes aparecerEstatisticas {
+
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ============================= */
+/* FECHAR */
+/* ============================= */
+
+.fechar-estatisticas {
+
+    position: absolute;
+
+    top: 1px;
+    right: 15px;
+
+    width: 20px;
+    height: 4pc;
+
+    border: none;
+
+
+
+    color: #e63964;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* ============================= */
+/* TÍTULO */
+/* ============================= */
+
+.icone-estatisticas {
+
+    font-size: 50px;
+
+    margin-bottom: 5px;
+}
+
+
+.caixa-estatisticas h1 {
+
+    color: #e63964;
+
+    font-size: 26px;
+
+    margin: 5px 0;
+}
+
+
+.subtitulo-estatisticas {
+
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+
+/* ============================= */
+/* ESTATÍSTICA */
+/* ============================= */
+
+.estatistica {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: #ffe5ec;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    margin-bottom: 12px;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+
+.estatistica:hover {
+
+    transform: scale(1.02);
+
+}
+
+
+.icone-stat {
+
+    font-size: 32px;
+
+    min-width: 45px;
+
+    text-align: center;
+}
+
+
+.info-stat {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.info-stat span {
+
+    color: #e63964;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+.info-stat small {
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* ============================= */
+/* BOTÕES */
+/* ============================= */
+
+.botao-editar-stats,
+.botao-adicionar-stat,
+.botao-salvar-stats {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+}
+
+
+.botao-editar-stats {
+
+    background: #e63964;
+
+    color: white;
+}
+
+
+.botao-adicionar-stat {
+
+    background: #ffe5ec;
+
+    color: #e63964;
+
+    border: 2px solid #ffb3c1;
+}
+
+
+.botao-salvar-stats {
+
+    background: #e63964;
+
+    color: white;
+}
+
+
+.botao-calendario {
+    margin-top: 15px;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 12px;
+    background: white;
+    color: #e63964;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: 0.2s;
+}
+
+.botao-calendario:hover {
+    transform: scale(1.05);
+}
+
+.painel-calendario {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.55);
+
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.caixa-calendario {
+    position: relative;
+
+    background: white;
+
+    width: 90%;
+    max-width: 420px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+    animation: aparecerCalendario 0.4s ease;
+}
+
+@keyframes aparecerCalendario {
+
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.fechar-calendario {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    
+    color: #e63964;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.icone-calendario {
+    font-size: 50px;
+    margin-bottom: 5px;
+}
+
+.caixa-calendario h1 {
+    color: #e63964;
+    font-size: 26px;
+    margin: 5px 0;
+}
+
+.subtitulo-calendario {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.momento {
+    background: #ffe5ec;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    margin-bottom: 12px;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+.momento:hover {
+    transform: scale(1.02);
+}
+
+.momento-data {
+    color: #e63964;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.momento-titulo {
+    color: #e63964;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.momento-descricao {
+    color: #555;
+    font-size: 14px;
+    margin-top: 5px;
 }

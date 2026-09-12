@@ -1,16 +1,23 @@
 function entrar() {
-
     const senha = document.getElementById("senha").value;
     const erro = document.getElementById("erro");
 
     if (senha === "soso") {
-
         iniciarQuiz();
-
     } else {
-
         erro.textContent = "Senha incorreta... qual é seu apelido? Dica: 4 letras";
+    }
+}
 
+function alternarSenha(botao) {
+    const senha = document.getElementById("senha");
+
+    if (senha.type === "password") {
+        senha.type = "text";
+        botao.textContent = "👁️";
+    } else {
+        senha.type = "password";
+        botao.textContent = "🙈";
     }
 }
 
@@ -125,6 +132,263 @@ function atualizarContador() {
 setInterval(atualizarContador, 1000);
 
 atualizarContador();
+
+
+/* ================================= */
+/* ESTATÍSTICAS DO RELACIONAMENTO */
+/* ================================= */
+
+
+// Estatísticas iniciais
+let estatisticas = JSON.parse(
+    localStorage.getItem("estatisticasSoane")
+) || [
+
+    {
+        emoji: "📞",
+        nome: "Ligações",
+        valor: "1333"
+    },
+
+    {
+        emoji: "😂",
+        nome: "Momentos de drama",
+        valor: "8170"
+    },
+
+    {
+        emoji: "🍔",
+        nome: "Comidas juntos",
+        valor: "50"
+    },
+
+    {
+        emoji: "⚽",
+        nome: "Babas na Sexta Feira",
+        valor: "0, que eu não sou maluco de deixar minha esposa."
+    }
+
+];
+
+
+
+/* ================================= */
+/* CALCULAR DIAS JUNTOS */
+/* ================================= */
+
+function calcularDiasJuntos() {
+
+    const inicio = new Date("2026-02-13T00:00:00");
+
+    const agora = new Date();
+
+    const diferenca = agora - inicio;
+
+    const dias = Math.floor(
+        diferenca / (1000 * 60 * 60 * 24)
+    );
+
+    document.getElementById("diasEstatistica").textContent = dias;
+
+}
+
+
+
+/* ================================= */
+/* ABRIR ESTATÍSTICAS */
+/* ================================= */
+
+function abrirEstatisticas() {
+
+    calcularDiasJuntos();
+
+    atualizarEstatisticas();
+
+    document.getElementById("painelEstatisticas").style.display = "flex";
+
+}
+
+
+
+/* ================================= */
+/* FECHAR ESTATÍSTICAS */
+/* ================================= */
+
+function fecharEstatisticas() {
+
+    document.getElementById("painelEstatisticas").style.display = "none";
+
+}
+
+
+
+/* ================================= */
+/* MOSTRAR ESTATÍSTICAS */
+/* ================================= */
+
+function atualizarEstatisticas() {
+
+    const lista =
+        document.getElementById("listaEstatisticas");
+
+    lista.innerHTML = "";
+
+
+    // Dias juntos
+    lista.innerHTML += `
+
+        <div class="estatistica dias-estatistica">
+
+            <div class="icone-stat">
+                ❤️
+            </div>
+
+            <div class="info-stat">
+
+                <span id="diasEstatistica">
+                    0
+                </span>
+
+                <small>
+                    Dias juntos
+                </small>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    // Estatísticas personalizadas
+    estatisticas.forEach((stat) => {
+
+        lista.innerHTML += `
+
+            <div class="estatistica">
+
+                <div class="icone-stat">
+                    ${stat.emoji}
+                </div>
+
+                <div class="info-stat">
+
+                    <span>
+                        ${stat.valor}
+                    </span>
+
+                    <small>
+                        ${stat.nome}
+                    </small>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    calcularDiasJuntos();
+
+}
+
+
+const momentos = [
+
+    {
+        data: "13/02/2026",
+        emoji: "❤️",
+        titulo: "O dia em que nos conhecemos",
+        descricao: "No morro do gato, em Leo Sacana."
+    },
+
+    {
+        data: "01/03/2026",
+        emoji: "💕",
+        titulo: "Primeiro dia que saímos",
+        descricao: "A partir daqui que neguinha se apaixonou e eu entreguei o primeiro anel (laele)."
+    },
+
+    {
+        data: "13/04/2026",
+        emoji: "💍",
+        titulo: "Começamos a namorar",
+        descricao: "Grande dia que eu entreguei o verdadeiro anel pro meu amor ❤️."
+    },
+
+    {
+        data: "12/06/2026",
+        emoji: "🍕",
+        titulo: "Primeiro dia dos namorados",
+        descricao: "Tomei aquele fumo gostoso no Oliva, mas valeu a pena demais com meu amor."
+    },
+
+    {
+        data: "29/06/2026",
+        emoji: "🏠",
+        titulo: "Veio pra minha casa",
+        descricao: "Primeira vez que neguinha veio em minha casa e ainda assistiu o jogo comigo."
+    },
+
+    {
+        data: "25/07/2026",
+        emoji: "🏠",
+        titulo: "Fui pra casa de Neguinha",
+        descricao: "Conheci a familia de Neguinha, depois da minha astúcia e fiz história."
+    },
+
+    {
+        data: "14/11/2026",
+        emoji: "🌴",
+        titulo: "Primeira viagem",
+        descricao: "Vamos passar juntos em Aracaju meu aniversário e vai ser nossa primeira viagem juntos!"
+    }
+
+
+
+];
+
+function abrirCalendario() {
+
+    const painel = document.getElementById("painelCalendario");
+    const lista = document.getElementById("listaMomentos");
+
+    lista.innerHTML = "";
+
+    momentos.forEach((momento) => {
+
+        lista.innerHTML += `
+            <div class="momento">
+
+                <div class="momento-data">
+                    ${momento.emoji} ${momento.data}
+                </div>
+
+                <div class="momento-titulo">
+                    ${momento.titulo}
+                </div>
+
+                <div class="momento-descricao">
+                    ${momento.descricao}
+                </div>
+
+            </div>
+        `;
+
+    });
+
+    painel.style.display = "flex";
+}
+
+
+function fecharCalendario() {
+
+    document.getElementById("painelCalendario").style.display = "none";
+
+}
+
 
 
 function mostrarMensagem() {

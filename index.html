@@ -19,9 +19,22 @@
 
         <p>Digite a senha para entrar...</p>
 
-        <div class="campo-senha">
-    <input type="password" id="senha" placeholder="Digite a senha">
-    <button type="button" onclick="mostrarSenha()">👁️</button>
+    <div class="campo-senha">
+    <span class="icone-cadeado">🔒</span>
+
+    <input
+        type="password"
+        id="senha"
+        placeholder="Digite a senha"
+    >
+
+    <button
+        type="button"
+        class="botao-senha"
+        onclick="alternarSenha(this)"
+    >
+        🙈
+    </button>
 </div>
 
         <button onclick="entrar()">Entrar</button>
@@ -137,6 +150,11 @@
 
 </div>
 
+
+
+
+
+
 <br>
 
             <p class="final-message">
@@ -144,6 +162,76 @@
             </p>
 
         </div>
+
+<button class="botao-estatisticas" onclick="abrirEstatisticas()">
+    📊 Nossas estatísticas
+</button>
+
+<!-- PAINEL DE ESTATÍSTICAS -->
+<div id="painelEstatisticas" class="painel-estatisticas">
+
+    <div class="caixa-estatisticas">
+
+        <button class="fechar-estatisticas" onclick="fecharEstatisticas()">
+            ✕
+        </button>
+
+        <div class="icone-estatisticas">📊</div>
+
+        <h1>Nossas estatísticas</h1>
+
+        <p class="subtitulo-estatisticas">
+            Um pouquinho da nossa história ❤️
+        </p>
+
+        <div id="listaEstatisticas">
+
+            <!-- Dias juntos -->
+            <div class="estatistica dias-estatistica">
+
+                <div class="icone-stat">❤️</div>
+
+                <div class="info-stat">
+                    <span id="diasEstatistica">0</span>
+                    <small>Dias juntos</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<button class="botao-calendario" onclick="abrirCalendario()">
+    📅 Nosso Calendário
+</button>
+
+<div id="painelCalendario" class="painel-calendario">
+
+    <div class="caixa-calendario">
+
+        <button class="fechar-calendario" onclick="fecharCalendario()">
+            ✕
+        </button>
+
+        <div class="icone-calendario">📅</div>
+
+        <h1>Nosso Calendário</h1>
+
+        <p class="subtitulo-calendario">
+            Alguns momentos da nossa história ❤️
+        </p>
+
+        <div id="listaMomentos"></div>
+
+    </div>
+
+</div>
+
+
 
         <button onclick="mostrarMensagem()">
             Clique aqui 💌
