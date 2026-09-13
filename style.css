@@ -976,7 +976,6 @@ button:hover {
 
 .pagina-extra {
     position: fixed;
-
     top: 0;
     left: 0;
 
@@ -986,13 +985,16 @@ button:hover {
     display: none;
 
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
 
     z-index: 9996;
 
+    overflow-x: hidden;
     overflow-y: auto;
+
+    padding: 25px 0;
 }
 
 .caixa-extra {
@@ -2119,3 +2121,72 @@ p {
     border-color: #e63964;
 }
 
+/* =========================================
+   CARDS MAIS COMPACTOS
+========================================= */
+
+.caixa-extra,
+.caixa-quiz,
+.caixa-estatisticas,
+.caixa-calendario {
+    padding: 25px 30px;
+}
+
+/* Menos espaço entre ícone e conteúdo */
+.icone-extra,
+.icone-estatisticas,
+.icone-calendario {
+    margin-bottom: 5px;
+}
+
+/* Menos espaço nos títulos */
+.caixa-extra h1,
+.caixa-quiz h1,
+.caixa-estatisticas h1,
+.caixa-calendario h1 {
+    margin-bottom: 10px;
+}
+
+/* Menos espaço nos textos */
+.caixa-extra p {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+
+    .pagina-extra {
+        height: 100dvh;
+        align-items: flex-start;
+        padding: 15px 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .caixa-extra,
+    .caixa-quiz,
+    .caixa-estatisticas,
+    .caixa-calendario {
+        width: calc(100% - 20px);
+        padding: 20px 16px;
+        margin: 0 auto;
+    }
+
+    .icone-extra {
+        font-size: 45px;
+        margin-bottom: 5px;
+    }
+
+    .caixa-extra h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .caixa-extra p {
+        margin-bottom: 12px;
+    }
+
+    .caixa-extra button {
+        padding: 11px 18px;
+        font-size: 15px;
+    }
+}
