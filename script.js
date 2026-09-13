@@ -531,6 +531,7 @@ function voltarAoMenu() {
     document.getElementById("quiz").style.display = "none";
     document.getElementById("paginaESe").style.display = "none";
     document.getElementById("menu").style.display = "flex";
+    document.getElementById("paginaSosoBrava").style.display = "none";
 
     window.scrollTo(0, 0);
 
@@ -1197,6 +1198,19 @@ if (telaAtual === "quiz") {
 
     }
 
+    if (telaAtual === "sosoBrava") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+
+    document.getElementById("paginaSosoBrava").style.display = "flex";
+
+    carregarEscolhaSoso();
+}
+
+
     /* =========================
        MENSAGEM
     ========================= */
@@ -1428,4 +1442,254 @@ function voltarParaJogosDoESe() {
     window.scrollTo(0, 0);
 
     salvarTelaAtual("jogos");
+}
+
+let escolhaAtualSoso = "";
+
+const respostasSosoBrava = {
+
+    carinho: {
+        titulo: "❤️ CARINHO SOLICITADO!",
+        escolha: "Quero carinho",
+        mensagem: `
+            <h2>❤️ CARINHO SOLICITADO!</h2>
+
+            <p>
+                Otima escolha, você sabe que eu sei fazer um carinho gostoso em você meu amor...
+            </p>
+
+            <p>
+                Eu vou te dá:
+            </p>
+
+            <p>
+                🤗 Abraço<br>
+                💋 Beijo<br>
+                ❤️ Carinho
+            </p>
+
+            <p>
+                Não vou reclamar em nada, eu quero te da carinho mesmo.
+            </p>
+        `
+    },
+
+
+    conversar: {
+        titulo: "💬 SOSO QUER CONVERSAR",
+        escolha: "Quero conversar",
+        mensagem: `
+            <h2>💬 Soso quer conversar</h2>
+
+            <p>
+                Quer conversar meu amor?.
+            </p>
+
+            <p>
+                To aqui pra conversar com você, so não precisa me xingar kkkkkkkkkkkkkkkkkkk
+            </p>
+
+            <p>
+                Te amo e amo te escutar ❤️
+            </p>
+        `
+    },
+
+
+    raiva: {
+        titulo: "🙄 REPARO RECUSADO",
+        escolha: "Ainda tô com raiva",
+        mensagem: `
+            <h2>🙄 NEM QUER ME VER</h2>
+
+            <p>
+                Tá com raiva ainda meu amor?.
+            </p>
+
+            <p>
+                Eu não sei mais o que fazer...
+            </p>
+
+            <p>
+                Vou tentar ficar quietinho e não vou falar nada...
+            </p>
+
+            <p>
+                Tudo mentira essa linha de cima ai kkkkkkkkkkkkkkkkkkkkkkkk
+            </p>
+        `
+    },
+
+
+    espaco: {
+        titulo: "🧘 ESPAÇO SOLICITADO",
+        escolha: "Quero meu espaço",
+        mensagem: `
+            <h2>🧘 ELA QUER FICAR NA DELA</h2>
+
+            <p>
+                Eu estou proibido de perturbar Soso
+                por alguns instantes.
+            </p>
+
+            <p>
+                Não gostei dessa porra ai não viu
+            </p>
+        `
+    },
+
+
+    agrado: {
+        titulo: "🍔 AGRADO SOLICITADO",
+        escolha: "Quero um agrado",
+        mensagem: `
+            <h2>💳 JÁ NÃO GOSTEI MUITO DESSA OPÇÃO</h2>
+
+            <p>
+                Soso solicitou um agrado.
+            </p>
+
+            <p>
+                Lucas não gostou muito desse negócio de agrado não viu
+            </p>
+
+            <p>
+                Tá querendo açaí,
+                lanche, chocolate ou acabar com o dinheiro do Lucas.
+            </p>
+        `
+    },
+
+
+    rir: {
+        titulo: "😂 MISSÃO: FAZER SOSO RIR",
+        escolha: "Me faça rir",
+        mensagem: `
+            <h2>😂 ESSA É A MELHOR OPÇÃO</h2>
+
+            <p>
+                Lucas vai fazer Soso rir.
+            </p>
+
+            <p>
+                Nisso você sabe que eu sou bom né meu amor, gracinha é comigo.
+            </p>
+
+            <p>
+                Você arrumou um engraçadinho por que quis... Agora se abra ai pra mim
+            </p>
+        `
+    }
+
+};
+
+function abrirSosoBrava() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaSosoBrava").style.display = "flex";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("sosoBrava");
+
+    carregarEscolhaSoso();
+}
+
+function escolherSosoBrava(escolha) {
+
+    escolhaAtualSoso = escolha;
+
+    const dados = respostasSosoBrava[escolha];
+
+    document.getElementById("opcoesSosoBrava").style.display = "none";
+
+    document.getElementById("resultadoSosoBrava").style.display = "block";
+
+    document.getElementById("textoResultadoSoso").innerHTML =
+        dados.mensagem;
+
+    localStorage.setItem("escolhaSosoBrava", escolha);
+}
+
+function carregarEscolhaSoso() {
+
+    const escolhaSalva =
+        localStorage.getItem("escolhaSosoBrava");
+
+    if (escolhaSalva && respostasSosoBrava[escolhaSalva]) {
+
+        escolhaAtualSoso = escolhaSalva;
+
+        document.getElementById("opcoesSosoBrava").style.display = "none";
+
+        document.getElementById("resultadoSosoBrava").style.display = "block";
+
+        document.getElementById("textoResultadoSoso").innerHTML =
+            respostasSosoBrava[escolhaSalva].mensagem;
+
+    } else {
+
+        document.getElementById("opcoesSosoBrava").style.display = "block";
+
+        document.getElementById("resultadoSosoBrava").style.display = "none";
+
+    }
+
+}
+
+function escolherNovamenteSoso() {
+
+    escolhaAtualSoso = "";
+
+    localStorage.removeItem("escolhaSosoBrava");
+
+    document.getElementById("resultadoSosoBrava").style.display = "none";
+
+    document.getElementById("opcoesSosoBrava").style.display = "block";
+
+}
+
+const numeroWhatsappLucas = "5571988214998";
+
+function compartilharSosoNoWhatsapp() {
+
+    if (!escolhaAtualSoso) {
+        return;
+    }
+
+    const dados = respostasSosoBrava[escolhaAtualSoso];
+
+    const mensagemEscrita =
+        document.getElementById("mensagemSoso").value.trim();
+
+    let mensagem =
+`RESULTADO DO SOSO TÁ BRAVA
+
+Soso escolheu:
+
+${dados.escolha}`;
+
+    if (mensagemEscrita !== "") {
+
+        mensagem += `
+
+    Soso escreveu:
+
+"${mensagemEscrita}"`;
+
+    }
+
+    mensagem += `
+
+Faça essa porra agora!
+
+— Soso Reis 13`;
+
+    const textoCodificado = encodeURIComponent(mensagem);
+
+    const link =
+        `https://wa.me/${numeroWhatsappLucas}?text=${textoCodificado}`;
+
+    window.open(link, "_blank");
 }

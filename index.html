@@ -143,6 +143,11 @@
                 <small>Ver nossa galeria</small>
             </button>
 
+            <button onclick="abrirSosoBrava()">
+                😡 Soso tá Brava
+                <small>To irritada (ai que dor de dente)...</small>
+            </button>
+
             <button onclick="abrirReclamacoes()">
                 🙄 Zoada da Soso
                 <small>Tem alguma reclamação contra Luquinhas? Largue o doce</small>
@@ -453,7 +458,98 @@
 
 </div>
 
+<div id="paginaSosoBrava" class="pagina-extra">
 
+    <div class="caixa-extra caixa-soso-brava">
+
+        <div class="icone-extra">😤</div>
+
+        <h1>Soso tá Brava</h1>
+
+        <p>
+            🚨 Minha Soso tá irritadinha e eu preciso saber como me comportar agora com ela.
+        </p>
+
+        <p class="texto-soso-brava">
+            Eu preciso saber o que  Soso quer neste momento:
+        </p>
+
+        <div id="opcoesSosoBrava" class="opcoes-soso">
+
+            <button onclick="escolherSosoBrava('carinho')">
+                Quero carinho
+            </button>
+
+            <button onclick="escolherSosoBrava('conversar')">
+                Quero conversar
+            </button>
+
+            <button onclick="escolherSosoBrava('raiva')">
+                Ainda tô com raiva
+            </button>
+
+            <button onclick="escolherSosoBrava('espaco')">
+                Quero meu espaço
+            </button>
+
+            <button onclick="escolherSosoBrava('agrado')">
+                Quero um agrado
+            </button>
+
+            <button onclick="escolherSosoBrava('rir')">
+                Me faça rir
+            </button>
+
+        </div>
+<br>
+
+        <div id="resultadoSosoBrava" class="resultado-soso-brava"
+            style="display: none;">
+
+            <div id="textoResultadoSoso"></div>
+
+<div class="campo-mensagem-soso">
+
+    <label for="mensagemSoso">
+        💬 Escreva ai pra Lucas
+    </label>
+
+    <textarea
+        id="mensagemSoso"
+        placeholder="Escreve aqui o que você quer me dizer..."
+        maxlength="300"
+    ></textarea>
+
+</div>
+
+<button
+    id="botaoWhatsappSoso"
+    class="botao-whatsapp-soso"
+    onclick="compartilharSosoNoWhatsapp()"
+>
+    📲 Mandar pro WhatsApp do Lucas
+</button>
+
+            <button
+                class="botao-escolher-novamente"
+                onclick="escolherNovamenteSoso()"
+            >
+                🔄 Escolher outra opção
+            </button>
+
+        </div>
+
+
+        <button
+            class="botao-voltar-jogos"
+            onclick="voltarAoMenu()"
+        >
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
 
 
 <div id="paginaMensagem" class="pagina-extra">

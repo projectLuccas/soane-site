@@ -9,15 +9,18 @@ body {
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     font-family: Arial, sans-serif;
-
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
-
     color: #333;
 
-    padding: 20px;
+    padding: 35px 20px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: border-box;
 }
 
 .container {
@@ -865,19 +868,23 @@ button:hover {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100vh;
 
     display: none;
 
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
 
     z-index: 9997;
 
+    overflow-x: hidden;
     overflow-y: auto;
+
+    padding: 25px 0;
 }
 
 .caixa-menu {
@@ -1934,5 +1941,181 @@ p {
     color: #e63964;
     line-height: 1.5;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    .tela-menu {
+        height: 100dvh;
+        align-items: flex-start;
+        padding: 15px 0;
+        overflow-y: auto;
+    }
+
+    .caixa-menu {
+        width: calc(100% - 20px);
+        padding: 20px 16px;
+        margin: 0 auto;
+    }
+
+    .opcoes-menu {
+        gap: 8px;
+    }
+
+    .opcoes-menu button {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .opcoes-menu button small {
+        font-size: 12px;
+    }
+
+}
+
+.caixa-soso-brava {
+    max-width: 500px;
+}
+
+.texto-soso-brava {
+    margin-bottom: 20px;
+}
+
+
+/* OPÇÕES */
+
+.opcoes-soso {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.opcoes-soso button {
+    display: block;
+    width: 100%;
+
+    margin: 10px 0;
+    padding: 13px;
+
+    border: 2px solid #ffb3c1;
+    border-radius: 12px;
+
+    background: #ffe5ec;
+    color: #e63964;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.opcoes-soso button:hover {
+    background: #ffb3c1;
+    transform: scale(1.02);
+}
+
+
+/* RESULTADO */
+
+.resultado-soso-brava {
+    width: 100%;
+
+    margin: 20px 0;
+    padding: 20px;
+
+    background: #ffe5ec;
+
+    border: 2px solid #ffb3c1;
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+.resultado-soso-brava h2 {
+    color: #e63964;
+    margin-bottom: 15px;
+}
+
+.resultado-soso-brava p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+
+/* WHATSAPP */
+
+.botao-whatsapp-soso {
+    display: block;
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #25D366 !important;
+    color: white !important;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.botao-whatsapp-soso:hover {
+    transform: scale(1.03);
+}
+
+
+/* ESCOLHER DE NOVO */
+
+.botao-escolher-novamente {
+    display: block;
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+.campo-mensagem-soso {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.campo-mensagem-soso label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #e63964;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.campo-mensagem-soso textarea {
+    width: 100%;
+    min-height: 100px;
+
+    padding: 12px;
+
+    border: 2px solid #ffb3c1;
+    border-radius: 12px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    resize: vertical;
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+.campo-mensagem-soso textarea:focus {
+    border-color: #e63964;
 }
 
