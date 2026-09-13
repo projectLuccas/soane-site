@@ -2192,37 +2192,45 @@ p {
 }
 
 /* =========================================
-   LOGIN - AJUSTE SOMENTE PARA CELULAR
+   LOGIN - CELULAR MAIS COMPACTO
 ========================================= */
 
 @media (max-width: 600px) {
 
     #telaSenha {
         height: 100dvh;
-        align-items: flex-start;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         overflow-y: auto;
-        padding: 25px 0;
+
+        padding: 20px;
     }
 
     .caixa-senha {
-        width: calc(100% - 30px);
-        max-width: 350px;
+        width: 85%;
+        max-width: 320px;
 
-        padding: 25px 20px;
+        padding: 25px 18px;
 
-        margin: 0 auto;
+        margin: auto;
+
+        border-radius: 20px;
 
         box-sizing: border-box;
     }
 
     .caixa-senha .coracao {
-        font-size: 45px;
+        font-size: 42px;
         margin-bottom: 5px;
     }
 
     .caixa-senha h1 {
-        font-size: 23px;
-        margin: 5px 0;
+        font-size: 22px;
+        line-height: 1.2;
+        margin: 5px 0 8px;
     }
 
     .caixa-senha p {
@@ -2231,12 +2239,17 @@ p {
     }
 
     .campo-senha {
+        width: 100%;
         margin: 12px auto;
     }
 
-    .caixa-senha button {
-        padding: 11px 22px;
+    .campo-senha input {
         font-size: 15px;
+        padding: 10px 5px;
     }
 
+    .caixa-senha button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
 }
