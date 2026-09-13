@@ -529,7 +529,7 @@ function voltarAoMenu() {
     document.getElementById("paginaReclamacoes").style.display = "none";
     document.getElementById("paginaJogos").style.display = "none";
     document.getElementById("quiz").style.display = "none";
-
+    document.getElementById("paginaESe").style.display = "none";
     document.getElementById("menu").style.display = "flex";
 
     window.scrollTo(0, 0);
@@ -1280,6 +1280,18 @@ if (telaAtual === "quiz") {
 
     }
 
+    if (telaAtual === "ese") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("paginaESe").style.display = "flex";
+
+}
+
+
     /* =========================
        ESTATÍSTICAS
     ========================= */
@@ -1301,3 +1313,119 @@ if (telaAtual === "quiz") {
     window.scrollTo(0, 0);
 
 });
+
+const perguntasESe = {
+
+    bonitinho: [
+        "E se a gente pudesse voltar para um dia que já vivemos juntos, qual você escolheria?",
+        "E se hoje fosse nosso último dia juntos. Depois vamo ficar 1 ano sem se ver, o que você ia fazer comigo?",
+        "E se você pudesse guardar para sempre uma lembrança nossa, qual seria?",
+        "E se a gente pudesse repetir nosso primeiro encontro, você mudaria alguma coisa?",
+        "Qual seria a música que define nós dois?",
+        "O que te lembra nós? Tipo, algo só nosso..."
+    ],
+
+    engracadinho: [
+        "E se a gente trocasse de corpo por um tempo, qual seria a primeira coisa que você faria?",
+        "E se a gente fosse preso. Qual seria o crime cometido por você e o que você acha que seria o meu?",
+        "E se a gente ficasse preso em um elevador por 5 horas, quem ia ficar azoado primeiro?",
+        "E se nossas conversas vazassem na internet, qual de nós dois seria cancelado primeiro?",
+        "Quem é que fala mais entre a gente? kkkkkkkk e qual seria a frase mais falada se a gente tivesse um narrador?",
+        "E se um de nós ficasse famoso do nada, quem ia se achar mais? kkkkkkkk essa é obvio boçal"
+    ],
+
+    futuro: [
+        "E se a gente pudesse morar em qualquer lugar do mundo, onde seria?",
+        "E se a gente ganhasse R$ 1 milhão hoje, qual seria a primeira coisa que faríamos juntos?",
+        "E se a gente pudesse viajar amanhã para qualquer lugar, para onde iríamos? Tirando aracajivis",
+        "E se daqui a 10 anos a gente abrisse uma caixa com coisas de hoje, o que você colocaria nela?",
+        "E se a gente tivesse nossa própria casa amanhã, qual seria a primeira coisa que você compraria?",
+        "E se você pudesse escolher uma coisa para a gente realizar juntos nos próximos anos, qual seria? Tirando morar junto"
+    ],
+
+    duvidas: [
+        "E se você pudesse mudar uma única coisa na nossa história, mudaria alguma coisa?",
+        "E se você pudesse ouvir meus pensamentos por 10 minutos, você iria gostar?",
+        "E se a gente tivesse uma discussão agora. Qual seria o motivo?",
+        "E se você tivesse que me contar uma coisa que nunca teve coragem de falar, o que seria?",
+        "E se a gente pudesse apagar uma briga da nossa história, qual seria?",
+        "E se você pudesse fazer uma pergunta e eu fosse obrigado a responder agora, o que perguntaria?"
+    ]
+
+};
+
+let categoriaESe = "aleatorio";
+let perguntasJaVistasESe = [];
+let quantidadeDescobertaESe = 0;
+
+function abrirESe() {
+
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("paginaESe").style.display = "flex";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("ese");
+}
+
+function mudarCategoriaESe(categoria) {
+
+    categoriaESe = categoria;
+
+    perguntasJaVistasESe = [];
+
+    sortearESe();
+}
+
+function sortearESe() {
+
+    let lista = [];
+
+    if (categoriaESe === "aleatorio") {
+
+        lista = [
+            ...perguntasESe.bonitinho,
+            ...perguntasESe.engracadinho,
+            ...perguntasESe.futuro,
+            ...perguntasESe.duvidas
+        ];
+
+    } else {
+
+        lista = perguntasESe[categoriaESe];
+
+    }
+
+    let disponiveis = lista.filter(
+        pergunta => !perguntasJaVistasESe.includes(pergunta)
+    );
+
+    if (disponiveis.length === 0) {
+
+        perguntasJaVistasESe = [];
+        disponiveis = lista;
+
+    }
+
+    const sorteada =
+        disponiveis[Math.floor(Math.random() * disponiveis.length)];
+
+    perguntasJaVistasESe.push(sorteada);
+
+    quantidadeDescobertaESe++;
+
+    document.getElementById("textoESe").textContent = sorteada;
+
+    document.getElementById("contadorESe").textContent =
+        quantidadeDescobertaESe + " situações descobertas";
+}
+
+function voltarParaJogosDoESe() {
+
+    document.getElementById("paginaESe").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "flex";
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("jogos");
+}
