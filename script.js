@@ -1684,7 +1684,7 @@ const opcoesRoleta = [
 
     {
         nome: "🍽️ RESTAURANTE DE 1 REAL",
-        mensagem: "CAIU NO RESTAURANTE DE 1 REAL VAI TER QUE IR 😂😂😂😂😂😂😂"
+        mensagem: "CAIU NO RESTAURANTE DE 1 REAL VAI TER QUE IR 😂😂😂😂😂😂"
     },
 
     {
