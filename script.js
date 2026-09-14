@@ -523,13 +523,15 @@ function voltarAoMenu() {
 
     document.getElementById("site").style.display = "none";
     document.getElementById("paginaMomentos").style.display = "none";
+    document.getElementById("paginaMensagem").style.display = "none";
+    document.getElementById("paginaSoane").style.display = "none";
+    document.getElementById("paginaSurpresa").style.display = "none";
     document.getElementById("paginaReclamacoes").style.display = "none";
     document.getElementById("paginaJogos").style.display = "none";
     document.getElementById("quiz").style.display = "none";
     document.getElementById("paginaESe").style.display = "none";
     document.getElementById("menu").style.display = "flex";
     document.getElementById("paginaSosoBrava").style.display = "none";
-    document.getElementById("paginaRoleta").style.display = "none";
 
     window.scrollTo(0, 0);
 
@@ -551,6 +553,35 @@ function abrirMomentos() {
     salvarTelaAtual("momentos");
 }
 
+
+function abrirMensagem() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaMensagem").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+
+function abrirModoSoane() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaSoane").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
+
+
+function abrirSurpresa() {
+
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaSurpresa").style.display = "flex";
+
+    window.scrollTo(0, 0);
+}
 
 /* =========================================
    GALERIA - NOSSOS MOMENTOS
@@ -1167,23 +1198,6 @@ if (telaAtual === "quiz") {
 
     }
 
-if (telaAtual === "roleta") {
-
-    document.getElementById("telaSenha").style.display = "none";
-
-    document.getElementById("menu").style.display = "none";
-
-    document.getElementById("quiz").style.display = "none";
-
-    document.getElementById("paginaJogos").style.display = "none";
-
-    document.getElementById("paginaSosoBrava").style.display = "none";
-
-    document.getElementById("paginaRoleta").style.display = "flex";
-}
-
-
-
     if (telaAtual === "sosoBrava") {
 
     document.getElementById("telaSenha").style.display = "none";
@@ -1679,152 +1693,3 @@ Faça essa porra agora!
 
     window.open(link, "_blank");
 }
-
-const opcoesRoleta = [
-
-    {
-        nome: "🍽️ RESTAURANTE DE 1 REAL",
-        mensagem: "CAIU NO RESTAURANTE DE 1 REAL VAI TER QUE IR 😂😂😂😂😂😂😂"
-    },
-
-    {
-        nome: "🌴 Ir pra Ribeira",
-        mensagem: "Bora pra ribeira de lei kkkkkkkkkk nossa segunda casa ❤️"
-    },
-
-    {
-        nome: "🛍️ Ir pro Shopping",
-        mensagem: "Shopping da Bahia? Nossa terceira casa 😂"
-    },
-
-    {
-        nome: "🎬 Cinema",
-        mensagem: "Bora pro cinema, mas é pra assistir o filme... 🍿🎬"
-    },
-
-    {
-        nome: "🍦 Tomar sorvete",
-        mensagem: "Sorvetinho com Soso, mas quem paga o sorvete é a neguinha kkkkkkkkk 🍦❤️"
-    },
-
-    {
-        nome: "❤️ Soso escolhe",
-        mensagem: "👑 A decisão está oficialmente nas mãos de Soso. Lucas que arrume um jegue."
-    },
-
-    {
-        nome: "😎 Lucas escolhe",
-        mensagem: "😎 Hoje o gostoso decide. Se quiser reclamar vá pra Zoada da Soso."
-    },
-
-    {
-        nome: "👩‍❤️‍👨 Rolê surpresa",
-        mensagem: "👀 A gente escolhe em conjunto o que fazer kkkkkkkkkkk como sempre."
-    }
-
-];
-
-let rotacaoAtualRoleta = 0;
-let roletaGirando = false;
-
-function abrirRoleta() {
-
-    document.getElementById("menu").style.display = "none";
-
-    document.getElementById("paginaRoleta").style.display = "flex";
-
-    window.scrollTo(0, 0);
-
-    salvarTelaAtual("roleta");
-}
-
-function girarRoleta() {
-
-    if (roletaGirando) {
-        return;
-    }
-
-    roletaGirando = true;
-
-    const roleta =
-        document.getElementById("roletaJequiti");
-
-    const resultado =
-        document.getElementById("resultadoRoleta");
-
-    const botao =
-        document.getElementById("botaoGirarRoleta");
-
-
-    resultado.style.display = "none";
-
-    botao.disabled = true;
-    botao.textContent = "🎡 GIRANDO...";
-
-
-    const indiceSorteado =
-        Math.floor(Math.random() * opcoesRoleta.length);
-
-
-    const tamanhoFatia =
-        360 / opcoesRoleta.length;
-
-
-    const centroFatia =
-        (indiceSorteado * tamanhoFatia) +
-        (tamanhoFatia / 2);
-
-
-    const posicaoDesejada =
-        360 - centroFatia;
-
-
-    const posicaoAtual =
-        rotacaoAtualRoleta % 360;
-
-
-    let diferenca =
-        posicaoDesejada - posicaoAtual;
-
-
-    if (diferenca < 0) {
-        diferenca += 360;
-    }
-
-
-    const voltasExtras = 5 * 360;
-
-
-    rotacaoAtualRoleta +=
-        voltasExtras + diferenca;
-
-
-    roleta.style.transform =
-        `rotate(${rotacaoAtualRoleta}deg)`;
-
-
-    setTimeout(() => {
-
-        const escolhido =
-            opcoesRoleta[indiceSorteado];
-
-
-        resultado.innerHTML = `
-            <h2>${escolhido.nome}</h2>
-
-            <p>${escolhido.mensagem}</p>
-        `;
-
-
-        resultado.style.display = "block";
-
-
-        botao.disabled = false;
-        botao.textContent = "🔄 Girar novamente";
-
-
-        roletaGirando = false;
-
-    }, 4500);
-}
-
