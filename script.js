@@ -551,36 +551,6 @@ function abrirMomentos() {
     salvarTelaAtual("momentos");
 }
 
-
-function abrirMensagem() {
-
-    document.getElementById("menu").style.display = "none";
-
-    document.getElementById("paginaMensagem").style.display = "flex";
-
-    window.scrollTo(0, 0);
-}
-
-
-function abrirModoSoane() {
-
-    document.getElementById("menu").style.display = "none";
-
-    document.getElementById("paginaSoane").style.display = "flex";
-
-    window.scrollTo(0, 0);
-}
-
-
-function abrirSurpresa() {
-
-    document.getElementById("menu").style.display = "none";
-
-    document.getElementById("paginaSurpresa").style.display = "flex";
-
-    window.scrollTo(0, 0);
-}
-
 /* =========================================
    GALERIA - NOSSOS MOMENTOS
 ========================================= */
@@ -1746,7 +1716,7 @@ const opcoesRoleta = [
     },
 
     {
-        nome: "👩‍❤️‍👨 Rolê surpresa",
+        nome: "👩‍❤️‍👨 Vamo na surpresa",
         mensagem: "👀 A gente escolhe em conjunto o que fazer kkkkkkkkkkk como sempre."
     }
 
