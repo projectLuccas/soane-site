@@ -148,6 +148,11 @@
                 <small>A roleta vai decidir as coisas </small>
             </button>
 
+            <button onclick="abrirSurpresinhaSoso()">
+                💖 Surpresinha pra Soso
+                <small>Tem uma coisinha especial pra você 🥰</small>
+            </button>
+
             <button onclick="abrirSosoBrava()">
                 😡 Soso tá Brava
                 <small>To irritada (ai que dor de dente)...</small>
@@ -288,6 +293,84 @@
     </div>
 
 </div>
+
+<div id="paginaSurpresinhaSoso" class="pagina-extra">
+
+    <div class="caixa-extra caixa-surpresinha">
+
+        <div class="coracao-surpresinha">💖</div>
+
+        <h1>Surpresinha pra Soso</h1>
+
+        <p id="textoSurpresinha">
+            Eu preparei uma coisinha especialmente pra você, neguinha 🥺❤️
+        </p>
+
+        <button
+            id="botaoAbrirSurpresa"
+            class="botao-abrir-surpresinha"
+            onclick="iniciarSurpresinhaSoso()"
+        >
+            💖 Ver minha surpresa
+        </button>
+
+        <button
+            class="botao-voltar-jogos"
+            onclick="voltarAoMenu()"
+        >
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JUMPSCARE -->
+<div id="jumpscareSoso" class="jumpscare-soso">
+
+    <img
+        src="jumpscare-soso.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- ÁUDIO -->
+<audio
+    id="audioJumpscareSoso"
+    src="susto.mp3"
+    preload="auto"
+></audio>
+
+
+<!-- TELA DEPOIS DO SUSTO -->
+<div id="posJumpscareSoso" class="pos-jumpscare-soso">
+
+    <div class="caixa-pos-jumpscare">
+
+        <div class="emoji-pos-susto">😂</div>
+
+        <h1>KKKAKAKAKAAKAKAKAKAKA</h1>
+
+        <h2>SE FUDEU 😂😂😂😂</h2>
+
+        <p>
+            CALMA SOSO KAKAKAKAKAKA
+        </p>
+
+        <button
+            class="botao-voltar-jogos"
+            onclick="fecharPosJumpscare()"
+        >
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
+
 
 <div id="paginaReclamacoes" class="pagina-extra">
 
