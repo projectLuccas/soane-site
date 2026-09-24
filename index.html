@@ -147,6 +147,12 @@
                 🎡 Roda a Roda Jequiti
                 <small>A roleta vai decidir as coisas </small>
             </button>
+            
+            <button onclick="abrirCertificadoBocal()">
+                🏆 Certificado da Neguinha
+                <small>Vamo ver se neguinha vai conseguir mais um diploma...</small>
+            </button>
+
 
             <button onclick="abrirSosoBrava()">
                 😡 Soso tá Brava
@@ -612,6 +618,233 @@
 
 </div>
 
+<!-- ========================= -->
+<!-- CERTIFICADO DA BOÇAL -->
+<!-- ========================= -->
+
+<div id="paginaCertificadoBocal" class="pagina-extra">
+
+    <div class="caixa-extra caixa-certificado-bocal">
+
+        <!-- TELA INICIAL -->
+        <div id="inicioCertificadoBocal" class="etapa-certificado">
+
+            <div class="icone-certificado">🏆</div>
+
+            <h1>Certificado da Neguinha</h1>
+
+            <p>
+                Pra receber este documento extremamente importante,
+                Soso deverá provar que realmente conhece Lulu... <br>(ai que dor de dente)
+            </p>
+
+            <div class="aviso-prova">
+                📝 5 perguntas<br>
+                🎯 Nota necessária: 5/5<br>
+                🏆 Recompensa: diploma do amor ❤️
+            </div>
+
+            <button class="botao-certificado-principal"
+                    onclick="comecarProvaBocal()">
+                📝 COMEÇAR PROVA
+            </button>
+
+        </div>
+<br>
+
+        <!-- PROVA -->
+        <div id="provaCertificadoBocal"
+             class="etapa-certificado"
+             style="display:none;">
+
+            <div class="topo-prova-bocal">
+                <span id="numeroPerguntaBocal">Pergunta 1/5</span>
+                <span id="pontuacaoBocal">❤️ 0</span>
+            </div>
+
+            <div class="barra-prova-bocal">
+                <div id="progressoProvaBocal"></div>
+            </div>
+
+            <h2 id="perguntaBocal"></h2>
+
+            <div id="alternativasBocal"
+                 class="alternativas-bocal">
+            </div>
+
+        </div>
+
+
+        <!-- RESULTADO -->
+        <div id="resultadoProvaBocal"
+             class="etapa-certificado"
+             style="display:none;">
+
+            <div id="iconeResultadoBocal"
+                 class="icone-certificado">
+                🏆
+            </div>
+
+            <h1 id="tituloResultadoBocal"></h1>
+
+            <p id="textoResultadoBocal"></p>
+
+            <button id="botaoResultadoBocal"
+                    class="botao-certificado-principal">
+            </button>
+
+        </div>
+
+
+        <!-- ASSINATURA -->
+        <div id="assinaturaCertificadoBocal"
+             class="etapa-certificado"
+             style="display:none;">
+
+            <div class="icone-certificado">✍️</div>
+
+            <h1>ASSINATURA</h1>
+
+            <p>
+                Todo documento oficial precisa da
+                assinatura de quem recebe (laele). <br>
+            </p>
+
+            <p class="instrucao-assinatura">
+                Faça sua rubrica abaixo usando o dedo:
+            </p>
+
+            <div class="area-canvas-assinatura">
+                <canvas id="canvasAssinaturaBocal"></canvas>
+            </div>
+
+            <div class="botoes-assinatura">
+
+                <button onclick="limparAssinaturaBocal()"
+                        class="botao-limpar-assinatura">
+                    🗑️ Limpar
+                </button>
+
+                <button onclick="confirmarAssinaturaBocal()"
+                        class="botao-confirmar-assinatura">
+                    ✅ Assinar
+                </button>
+
+            </div>
+
+            <p id="erroAssinaturaBocal"
+               class="erro-assinatura-bocal">
+            </p>
+
+        </div>
+
+
+        <!-- DIPLOMA -->
+        <div id="diplomaBocal"
+             class="etapa-certificado"
+             style="display:none;">
+
+            <div class="diploma-oficial">
+
+                <div class="ornamento-diploma">🏆 ❤️ 🏆</div>
+
+                <p class="diploma-pequeno">
+                    CURSO OFICIAL DE LUCAS OLIVEIRA
+                </p>
+
+                <h1>CERTIFICADO OFICIAL</h1>
+
+                <p class="diploma-subtitulo">
+                    MELHOR NAMORADA DO MUNDO
+                </p>
+
+                <div class="linha-diploma"></div>
+
+                <p>Certifico, para minha vida e todo sempre,
+                    oficialmente que</p>
+
+                <h2> SOANE REIS </h2>
+
+                <p>
+                    concluiu com aproveitamento máximo o
+                    <strong>Exame Oficial de Conhecimentos Sobre Lucas</strong>,
+                    obtendo a impressionante nota de
+                    <strong>5/5</strong>.
+                </p>
+
+                <p>
+                    Por meio deste documento, fica oficialmente reconhecida
+                    como a
+                </p>
+
+                <h3>🏆 MELHOR NAMORADA DO MUNDO 🏆</h3>
+
+                <p class="texto-amor-diploma">
+                    Mesmo com brigas e
+                    dias difíceis,
+                    você continua sendo uma pessoa única para mim.
+                    Eu amo tudo que construímos juntos e quero que você
+                    nunca esqueça o quanto é especial na minha vida.
+                    Eu amo você minha neguinha. ❤️
+                </p>
+
+                <div class="assinaturas-diploma">
+
+                    <div class="assinatura-diploma">
+                        <img id="imagemAssinaturaBocal"
+                             alt="Rubrica de Soane">
+
+                        <div class="linha-assinatura"></div>
+
+                        <strong>Soane Reis</strong>
+                        <small>Melhor Namorada do Mundo</small>
+                    </div>
+
+                    <div class="assinatura-diploma assinatura-lucas">
+
+                        <span><i>Lucas Oliveira</i></span>
+
+                        <div class="linha-assinatura"></div>
+
+                        <strong>Lucas Oliveira</strong>
+                        <small>Namorado e avaliador</small>
+                    </div>
+
+                </div>
+
+                <div class="rodape-diploma">
+                    <span>Certificado Nº SOSO-0001</span>
+                    <span>Validade: para sempre ❤️</span>
+                </div>
+
+                <p class="documento-irrevogavel">
+                    🔒 Documento irrevogável e intransferível.
+                </p>
+
+            </div>
+
+            <button class="botao-voltar-jogos"
+                    onclick="voltarAoMenu()">
+                🏠 Voltar ao menu
+            </button>
+
+        </div>
+        <br><br>
+        <button class="botaoreiniciar-certificado"
+             onclick="reiniciarCertificadoBocal()">
+            🔄 Reiniciar
+        </button>
+
+        <!-- VOLTAR -->
+        <button id="voltarMenuCertificado"
+                class="botao-voltar-jogos"
+                onclick="voltarAoMenu()">
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
 
 <div id="site">
 

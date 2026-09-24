@@ -530,7 +530,11 @@ function voltarAoMenu() {
     document.getElementById("paginaESe").style.display = "none";
     document.getElementById("menu").style.display = "flex";
     document.getElementById("paginaSosoBrava").style.display = "none";
+const paginaCertificado = document.getElementById("paginaCertificadoBocal");
 
+if (paginaCertificado) {
+    paginaCertificado.style.display = "none";
+}
     window.scrollTo(0, 0);
 
     salvarTelaAtual("menu");
@@ -1112,6 +1116,20 @@ if (telaAtual === "roleta") {
     document.getElementById("paginaSosoBrava").style.display = "none";
 
     document.getElementById("paginaRoleta").style.display = "flex";
+}
+
+if (telaAtual === "certificadoBocal") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("paginaJogos").style.display = "none";
+    document.getElementById("paginaSosoBrava").style.display = "none";
+    document.getElementById("paginaRoleta").style.display = "none";
+
+    document.getElementById("paginaCertificadoBocal").style.display = "flex";
+
+    carregarEstadoCertificadoBocal();
 }
 
 /* =========================
@@ -1823,4 +1841,801 @@ function girarRoleta() {
         roletaGirando = false;
 
     }, 4500);
+}
+
+/* ================================================= */
+/* CERTIFICADO DA BOÇAL */
+/* ================================================= */
+
+const perguntasCertificadoBocal = [
+
+    {
+        pergunta: "Qual o meu nome completo?",
+        alternativas: [
+            "Lucas Oliveira",
+            "Lucas Ribeiro de Oliveira",
+            "Lucas Ribeirão Preto",
+            "Lucas dos Santos Reis (an an)"
+        ],
+        correta: 1
+    },
+
+    {
+        pergunta: "Qual o meu lazer favorito atual?",
+        alternativas: [
+            "Sair com minha soso que eu amo e gastar muito (consumista)",
+            "Ir pro baba sexta feira em vez de jantar",
+            "Ficar em casa jogando videogame",
+            "Não tenho lazer pois odeio todos e vou virar emo até 2029"
+        ],
+        correta: 0
+    },
+
+    {
+        pergunta: "O que eu mais gosto em você? Já falei varias vezes...",
+        alternativas: [
+            "Cabelo",
+            "Boca",
+            "Cabeça, cabelo, testa, olhos, sobrancelhas, cílios, orelhas, nariz, bochechas, boca, lábios, dentes, língua, queixo, mandíbula, pescoço, nuca, ombros, braços, axilas, cotovelos, antebraços, pulsos, mãos, palmas, dedos, unhas, tórax, seios, mamilos, costas, abdômen, cintura, umbigo, quadris, pelve, virilha, vulva, nádegas, coxas, joelhos, pernas, panturrilhas, tornozelos, calcanhares, pés e dedos dos pés.",
+            "Bochechas"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "Meu cantor favorito?",
+        alternativas: [
+            "Zidane na Voz (an an)",
+            "Manoel Gomes",
+            "Belo",
+            "Rei dos Faixas"
+        ],
+        correta: 2
+    },
+
+    {
+        pergunta: "Quem é minha futura esposa, mãe dos meus filhos e dona do meu coração?",
+        alternativas: [
+            "Soane Reis 13",
+            "Soso, Branquinha, Rainha da Suburbana",
+            "Neguinha, Shay, Minha trufinha de Maracujá",
+            "Todas as alternativas"
+        ],
+        correta: 3
+    }
+
+];
+
+
+let perguntaAtualBocal = 0;
+let pontosBocal = 0;
+let provaRespondidaBocal = false;
+
+let desenhandoAssinaturaBocal = false;
+let assinaturaFoiDesenhadaBocal = false;
+
+
+/* ========================= */
+/* ABRIR */
+/* ========================= */
+
+function abrirCertificadoBocal() {
+
+    esconderTelasCertificadoBocal();
+
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("paginaCertificadoBocal").style.display = "flex";
+
+    carregarEstadoCertificadoBocal();
+
+    window.scrollTo(0, 0);
+
+    salvarTelaAtual("certificadoBocal");
+}
+
+
+/* ========================= */
+/* ESCONDER ETAPAS */
+/* ========================= */
+
+function esconderTelasCertificadoBocal() {
+
+    const ids = [
+        "inicioCertificadoBocal",
+        "provaCertificadoBocal",
+        "resultadoProvaBocal",
+        "assinaturaCertificadoBocal",
+        "diplomaBocal"
+    ];
+
+    ids.forEach(id => {
+
+        const elemento = document.getElementById(id);
+
+        if (elemento) {
+            elemento.style.display = "none";
+        }
+
+    });
+}
+
+
+/* ========================= */
+/* INICIAR PROVA */
+/* ========================= */
+
+function comecarProvaBocal() {
+
+    perguntaAtualBocal = 0;
+    pontosBocal = 0;
+    provaRespondidaBocal = false;
+
+    localStorage.setItem("etapaCertificadoBocal", "prova");
+    localStorage.setItem("perguntaAtualBocal", "0");
+    localStorage.setItem("pontosBocal", "0");
+
+    esconderTelasCertificadoBocal();
+
+    document.getElementById("provaCertificadoBocal").style.display = "block";
+
+    mostrarPerguntaBocal();
+}
+
+
+/* ========================= */
+/* MOSTRAR PERGUNTA */
+/* ========================= */
+
+function mostrarPerguntaBocal() {
+
+    provaRespondidaBocal = false;
+
+    const dados =
+        perguntasCertificadoBocal[perguntaAtualBocal];
+
+    document.getElementById("numeroPerguntaBocal").textContent =
+        `Pergunta ${perguntaAtualBocal + 1}/5`;
+
+    document.getElementById("pontuacaoBocal").textContent =
+        `❤️ ${pontosBocal}`;
+
+    document.getElementById("perguntaBocal").textContent =
+        dados.pergunta;
+
+    document.getElementById("progressoProvaBocal").style.width =
+        `${((perguntaAtualBocal + 1) / perguntasCertificadoBocal.length) * 100}%`;
+
+    const area =
+        document.getElementById("alternativasBocal");
+
+    area.innerHTML = "";
+
+    dados.alternativas.forEach((alternativa, indice) => {
+
+        const botao = document.createElement("button");
+
+        botao.className = "alternativa-bocal";
+
+        botao.textContent = alternativa;
+
+        botao.onclick = function () {
+            responderPerguntaBocal(indice, botao);
+        };
+
+        area.appendChild(botao);
+
+    });
+
+}
+
+
+/* ========================= */
+/* RESPONDER */
+/* ========================= */
+
+function responderPerguntaBocal(indice, botaoClicado) {
+
+    if (provaRespondidaBocal) {
+        return;
+    }
+
+    provaRespondidaBocal = true;
+
+    const dados =
+        perguntasCertificadoBocal[perguntaAtualBocal];
+
+    const botoes =
+        document.querySelectorAll(".alternativa-bocal");
+
+    if (indice === dados.correta) {
+
+        pontosBocal++;
+
+        botaoClicado.classList.add(
+            "alternativa-certa-bocal"
+        );
+
+    } else {
+
+        botaoClicado.classList.add(
+            "alternativa-errada-bocal"
+        );
+
+        botoes[dados.correta].classList.add(
+            "alternativa-certa-bocal"
+        );
+
+    }
+
+    botoes.forEach(botao => {
+        botao.disabled = true;
+    });
+
+
+    localStorage.setItem(
+        "pontosBocal",
+        pontosBocal
+    );
+
+
+    setTimeout(() => {
+
+        perguntaAtualBocal++;
+
+        localStorage.setItem(
+            "perguntaAtualBocal",
+            perguntaAtualBocal
+        );
+
+        if (
+            perguntaAtualBocal <
+            perguntasCertificadoBocal.length
+        ) {
+
+            mostrarPerguntaBocal();
+
+        } else {
+
+            finalizarProvaBocal();
+
+        }
+
+    }, 900);
+
+}
+
+
+/* ========================= */
+/* FINAL */
+/* ========================= */
+
+function finalizarProvaBocal() {
+
+    esconderTelasCertificadoBocal();
+
+    const resultado =
+        document.getElementById("resultadoProvaBocal");
+
+    resultado.style.display = "block";
+
+    const titulo =
+        document.getElementById("tituloResultadoBocal");
+
+    const texto =
+        document.getElementById("textoResultadoBocal");
+
+    const icone =
+        document.getElementById("iconeResultadoBocal");
+
+    const botao =
+        document.getElementById("botaoResultadoBocal");
+
+
+    if (pontosBocal === 5) {
+
+        localStorage.setItem(
+            "certificadoBocalAprovado",
+            "true"
+        );
+
+        localStorage.setItem(
+            "etapaCertificadoBocal",
+            "aprovada"
+        );
+
+        icone.textContent = "🏆";
+
+        titulo.textContent =
+            "APROVADA COM SUCESSO!";
+
+        texto.innerHTML =
+            "Resultado: <strong>5/5</strong><br><br>" +
+            "Após uma avaliação extremamente rigorosa, " +
+            "foi comprovado biomedicamente que Soso conhece " +
+            "Lucas até mais do que deveria.";
+
+        botao.textContent =
+            "🏆 RECEBER MEU CERTIFICADO";
+
+        botao.onclick =
+            abrirAssinaturaBocal;
+
+    } else {
+
+        localStorage.setItem(
+            "etapaCertificadoBocal",
+            "reprovada"
+        );
+
+        icone.textContent = "❌";
+
+        titulo.textContent =
+            "REPROVADA NESSA PORRA RAPAZ";
+
+        texto.innerHTML =
+            `Resultado: <strong>${pontosBocal}/5</strong><br><br>` +
+            "Negra tá maluca é? " +
+            "Tá doidinha pra eu ir pro baba sexta feira 🤨😂<br>" +
+            "Pra receber o diploma tem que fazer 5/5.";
+
+        botao.textContent =
+            "😂 TENTAR NOVAMENTE";
+
+        botao.onclick =
+            comecarProvaBocal;
+
+    }
+
+}
+
+
+/* ========================= */
+/* ASSINATURA */
+/* ========================= */
+
+function abrirAssinaturaBocal() {
+
+    esconderTelasCertificadoBocal();
+
+    document.getElementById(
+        "assinaturaCertificadoBocal"
+    ).style.display = "block";
+
+    document.getElementById(
+        "voltarMenuCertificado"
+    ).style.display = "block";
+
+    localStorage.setItem(
+        "etapaCertificadoBocal",
+        "assinatura"
+    );
+
+    setTimeout(() => {
+        prepararCanvasAssinaturaBocal();
+    }, 100);
+
+}
+
+
+/* ========================= */
+/* PREPARAR CANVAS */
+/* ========================= */
+
+function prepararCanvasAssinaturaBocal() {
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    if (!canvas) return;
+
+    const area =
+        canvas.parentElement.getBoundingClientRect();
+
+    const escala =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        Math.floor(area.width * escala);
+
+    canvas.height =
+        Math.floor(area.height * escala);
+
+    const ctx =
+        canvas.getContext("2d");
+
+    ctx.setTransform(
+        escala,
+        0,
+        0,
+        escala,
+        0,
+        0
+    );
+
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#222";
+
+
+    canvas.onpointerdown = iniciarAssinaturaBocal;
+    canvas.onpointermove = desenharAssinaturaBocal;
+    canvas.onpointerup = pararAssinaturaBocal;
+    canvas.onpointercancel = pararAssinaturaBocal;
+    canvas.onpointerleave = pararAssinaturaBocal;
+
+}
+
+
+/* ========================= */
+/* COMEÇAR DESENHO */
+/* ========================= */
+
+function iniciarAssinaturaBocal(evento) {
+
+    evento.preventDefault();
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    const ctx =
+        canvas.getContext("2d");
+
+    const posicao =
+        pegarPosicaoAssinaturaBocal(evento);
+
+    desenhandoAssinaturaBocal = true;
+    assinaturaFoiDesenhadaBocal = true;
+
+    canvas.setPointerCapture?.(
+        evento.pointerId
+    );
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        posicao.x,
+        posicao.y
+    );
+
+}
+
+
+/* ========================= */
+/* DESENHAR */
+/* ========================= */
+
+function desenharAssinaturaBocal(evento) {
+
+    if (!desenhandoAssinaturaBocal) {
+        return;
+    }
+
+    evento.preventDefault();
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    const ctx =
+        canvas.getContext("2d");
+
+    const posicao =
+        pegarPosicaoAssinaturaBocal(evento);
+
+    ctx.lineTo(
+        posicao.x,
+        posicao.y
+    );
+
+    ctx.stroke();
+
+}
+
+
+/* ========================= */
+/* POSIÇÃO */
+/* ========================= */
+
+function pegarPosicaoAssinaturaBocal(evento) {
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    return {
+
+        x:
+            evento.clientX -
+            rect.left,
+
+        y:
+            evento.clientY -
+            rect.top
+
+    };
+
+}
+
+
+/* ========================= */
+/* PARAR */
+/* ========================= */
+
+function pararAssinaturaBocal() {
+
+    desenhandoAssinaturaBocal = false;
+
+}
+
+
+/* ========================= */
+/* LIMPAR */
+/* ========================= */
+
+function limparAssinaturaBocal() {
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    const ctx =
+        canvas.getContext("2d");
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    assinaturaFoiDesenhadaBocal = false;
+
+    localStorage.removeItem(
+        "assinaturaCertificadoBocal"
+    );
+
+    document.getElementById(
+        "erroAssinaturaBocal"
+    ).textContent = "";
+
+}
+
+
+/* ========================= */
+/* CONFIRMAR ASSINATURA */
+/* ========================= */
+
+function confirmarAssinaturaBocal() {
+
+    const erro =
+        document.getElementById("erroAssinaturaBocal");
+
+    if (!assinaturaFoiDesenhadaBocal) {
+
+        erro.textContent =
+            "Ô boçal, assine o documento primeiro 😂✍️";
+
+        return;
+
+    }
+
+    const canvas =
+        document.getElementById("canvasAssinaturaBocal");
+
+    const assinatura =
+        canvas.toDataURL("image/png");
+
+    localStorage.setItem(
+        "assinaturaCertificadoBocal",
+        assinatura
+    );
+
+    localStorage.setItem(
+        "certificadoBocalConquistado",
+        "true"
+    );
+
+    localStorage.setItem(
+        "etapaCertificadoBocal",
+        "diploma"
+    );
+
+    mostrarDiplomaBocal();
+
+}
+
+
+/* ========================= */
+/* DIPLOMA */
+/* ========================= */
+
+function mostrarDiplomaBocal() {
+
+    esconderTelasCertificadoBocal();
+
+    document.getElementById(
+        "diplomaBocal"
+    ).style.display = "block";
+
+    document.getElementById(
+        "voltarMenuCertificado"
+    ).style.display = "none";
+
+    const assinatura =
+        localStorage.getItem(
+            "assinaturaCertificadoBocal"
+        );
+
+    if (assinatura) {
+
+        document.getElementById(
+            "imagemAssinaturaBocal"
+        ).src = assinatura;
+
+    }
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* ========================= */
+/* CARREGAR ESTADO / F5 */
+/* ========================= */
+
+function carregarEstadoCertificadoBocal() {
+
+    const etapa =
+        localStorage.getItem(
+            "etapaCertificadoBocal"
+        );
+
+    const conquistado =
+        localStorage.getItem(
+            "certificadoBocalConquistado"
+        );
+
+
+    esconderTelasCertificadoBocal();
+
+
+    if (
+        etapa === "diploma" ||
+        conquistado === "true"
+    ) {
+
+        mostrarDiplomaBocal();
+
+        return;
+
+    }
+
+
+    if (etapa === "assinatura") {
+
+        abrirAssinaturaBocal();
+
+        return;
+
+    }
+
+
+    if (etapa === "aprovada") {
+
+        pontosBocal = 5;
+
+        finalizarProvaBocal();
+
+        return;
+
+    }
+
+
+    if (etapa === "reprovada") {
+
+        pontosBocal =
+            Number(
+                localStorage.getItem(
+                    "pontosBocal"
+                )
+            ) || 0;
+
+        finalizarProvaBocal();
+
+        return;
+
+    }
+
+
+    if (etapa === "prova") {
+
+        perguntaAtualBocal =
+            Number(
+                localStorage.getItem(
+                    "perguntaAtualBocal"
+                )
+            ) || 0;
+
+        pontosBocal =
+            Number(
+                localStorage.getItem(
+                    "pontosBocal"
+                )
+            ) || 0;
+
+
+        if (
+            perguntaAtualBocal >=
+            perguntasCertificadoBocal.length
+        ) {
+
+            finalizarProvaBocal();
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "provaCertificadoBocal"
+        ).style.display = "block";
+
+        mostrarPerguntaBocal();
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "inicioCertificadoBocal"
+    ).style.display = "block";
+
+}
+
+function reiniciarCertificadoBocal() {
+
+    // Apaga todo o progresso do certificado
+    localStorage.removeItem("etapaCertificadoBocal");
+    localStorage.removeItem("perguntaAtualBocal");
+    localStorage.removeItem("pontosBocal");
+    localStorage.removeItem("certificadoBocalAprovado");
+    localStorage.removeItem("certificadoBocalConquistado");
+    localStorage.removeItem("assinaturaCertificadoBocal");
+
+    // Reinicia as variáveis
+    perguntaAtualBocal = 0;
+    pontosBocal = 0;
+    provaRespondidaBocal = false;
+
+    desenhandoAssinaturaBocal = false;
+    assinaturaFoiDesenhadaBocal = false;
+
+    // Limpa a assinatura que estava no diploma
+    const imagemAssinatura =
+        document.getElementById("imagemAssinaturaBocal");
+
+    if (imagemAssinatura) {
+        imagemAssinatura.removeAttribute("src");
+    }
+
+    // Esconde todas as etapas
+    esconderTelasCertificadoBocal();
+
+    // Volta para a primeira tela
+    document.getElementById(
+        "inicioCertificadoBocal"
+    ).style.display = "block";
+
+    // Mostra novamente o botão de voltar
+    document.getElementById(
+        "voltarMenuCertificado"
+    ).style.display = "block";
+
+    // Continua registrando que ela está
+    // dentro da página do certificado
+    salvarTelaAtual("certificadoBocal");
+
+    window.scrollTo(0, 0);
 }
