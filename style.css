@@ -2877,3 +2877,55 @@ p {
     background: #ac1111 !important;
 }
 
+.botao-salvar-certificado {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #25D366 !important;
+    color: white !important;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.botao-salvar-certificado:hover {
+    transform: scale(1.03);
+    background: #1ebe5d !important;
+}
+
+.diploma-oficial {
+    overflow: hidden;
+}
+
+.diploma-oficial h1,
+.diploma-oficial h2,
+.diploma-oficial h3,
+.diploma-oficial p {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.diploma-oficial h1 {
+    word-spacing: 6px;
+}
+
+.diploma-oficial h2 {
+    word-spacing: 6px;
+}
+
+.diploma-oficial h3 {
+    word-spacing: 4px;
+}
+
+.texto-amor-diploma {
+    word-spacing: 3px;
+}

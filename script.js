@@ -2639,3 +2639,708 @@ function reiniciarCertificadoBocal() {
 
     window.scrollTo(0, 0);
 }
+
+/* =========================================================
+   GERADOR DO CERTIFICADO EM IMAGEM
+   NÃO USA HTML2CANVAS
+========================================================= */
+
+async function salvarECompartilharCertificado() {
+
+    try {
+
+        /* =========================================
+           TAMANHO FIXO DA IMAGEM
+        ========================================= */
+
+        const largura = 1200;
+        const altura = 1600;
+
+        const canvas = document.createElement("canvas");
+
+        canvas.width = largura;
+        canvas.height = altura;
+
+        const ctx = canvas.getContext("2d");
+
+
+        /* =========================================
+           FUNDO
+        ========================================= */
+
+        ctx.fillStyle = "#fffaf0";
+        ctx.fillRect(0, 0, largura, altura);
+
+
+        /* =========================================
+           BORDAS DOURADAS
+        ========================================= */
+
+        ctx.strokeStyle = "#c79a32";
+        ctx.lineWidth = 7;
+
+        ctx.strokeRect(
+            15,
+            15,
+            largura - 30,
+            altura - 30
+        );
+
+        ctx.lineWidth = 2;
+
+        ctx.strokeRect(
+            27,
+            27,
+            largura - 54,
+            altura - 54
+        );
+
+
+        /* =========================================
+           TOPO
+        ========================================= */
+
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+
+        /* TROFÉUS */
+
+        ctx.font = "55px Arial";
+
+        ctx.fillText(
+            "🏆  ❤️  🏆",
+            largura / 2,
+            100
+        );
+
+
+        /* CURSO */
+
+        ctx.fillStyle = "#555";
+
+        ctx.font =
+            "bold 21px Arial";
+
+        ctx.fillText(
+            "CURSO OFICIAL DE LUCAS OLIVEIRA",
+            largura / 2,
+            160
+        );
+
+
+        /* =========================================
+           TÍTULO
+        ========================================= */
+
+        ctx.fillStyle = "#9b7021";
+
+        ctx.font =
+            "bold 50px Georgia";
+
+        ctx.fillText(
+            "CERTIFICADO OFICIAL",
+            largura / 2,
+            245
+        );
+
+
+        ctx.fillStyle = "#444";
+
+        ctx.font =
+            "bold 30px Georgia";
+
+        ctx.fillText(
+            "MELHOR NAMORADA DO MUNDO",
+            largura / 2,
+            295
+        );
+
+
+        /* LINHA DOURADA */
+
+        ctx.strokeStyle = "#c79a32";
+        ctx.lineWidth = 3;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            170,
+            350
+        );
+
+        ctx.lineTo(
+            largura - 170,
+            350
+        );
+
+        ctx.stroke();
+
+
+        /* =========================================
+           INTRODUÇÃO
+        ========================================= */
+
+        ctx.fillStyle = "#444";
+
+        ctx.font =
+            "25px Arial";
+
+
+        escreverTextoCentralizado(
+            ctx,
+            "Certifico para minha vida e todos sempre oficialmente que",
+            largura / 2,
+            415,
+            850,
+            37
+        );
+
+
+        /* =========================================
+           NOME
+        ========================================= */
+
+        ctx.fillStyle = "#e63964";
+
+        ctx.font =
+            "bold 47px Georgia";
+
+        ctx.fillText(
+            "SOANE REIS",
+            largura / 2,
+            520
+        );
+
+
+        /* =========================================
+           TEXTO DA PROVA
+        ========================================= */
+
+        ctx.fillStyle = "#444";
+
+        ctx.font =
+            "24px Arial";
+
+
+        escreverTextoCentralizado(
+            ctx,
+            "concluiu com aproveitamento máximo o Exame Oficial de Conhecimentos Sobre Lucas, obtendo a impressionante nota de 5/5.",
+            largura / 2,
+            590,
+            930,
+            38
+        );
+
+
+        escreverTextoCentralizado(
+            ctx,
+            "Por meio deste documento, fica oficialmente reconhecida como a",
+            largura / 2,
+            700,
+            900,
+            38
+        );
+
+
+        /* =========================================
+           TÍTULO DELA
+        ========================================= */
+
+        ctx.fillStyle = "#9b7021";
+
+        ctx.font =
+            "bold 33px Georgia";
+
+        ctx.fillText(
+            "🏆 MELHOR NAMORADA DO MUNDO 🏆",
+            largura / 2,
+            790
+        );
+
+
+        /* =========================================
+           TEXTO ROMÂNTICO
+        ========================================= */
+
+        ctx.fillStyle = "#444";
+
+        ctx.font =
+            "italic 25px Georgia";
+
+
+        escreverTextoCentralizado(
+            ctx,
+            "Mesmo com brigas e dias difíceis, você continua sendo uma pessoa única para mim. Eu amo tudo que construímos juntos e quero que você nunca esqueça o quanto é especial na minha vida. Eu amo você, minha neguinha. ❤️",
+            largura / 2,
+            860,
+            950,
+            40
+        );
+
+
+        /* =========================================
+           ASSINATURA DA SOANE
+        ========================================= */
+
+        const assinatura =
+            localStorage.getItem(
+                "assinaturaCertificadoBocal"
+            );
+
+
+        if (assinatura) {
+
+            const imagemAssinatura =
+                await carregarImagemCertificado(
+                    assinatura
+                );
+
+
+            const larguraAssinatura = 300;
+            const alturaAssinatura = 110;
+
+
+            ctx.drawImage(
+                imagemAssinatura,
+
+                145,
+                1110,
+
+                larguraAssinatura,
+                alturaAssinatura
+            );
+
+        }
+
+
+        /* =========================================
+           ASSINATURA DO LUCAS
+        ========================================= */
+
+        ctx.fillStyle = "#222";
+
+        ctx.font =
+            "italic 37px cursive";
+
+        ctx.fillText(
+            "Lucas Oliveira",
+            850,
+            1190
+        );
+
+
+        /* =========================================
+           LINHAS DAS ASSINATURAS
+        ========================================= */
+
+        ctx.strokeStyle = "#555";
+        ctx.lineWidth = 2;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            100,
+            1220
+        );
+
+        ctx.lineTo(
+            500,
+            1220
+        );
+
+        ctx.stroke();
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            700,
+            1220
+        );
+
+        ctx.lineTo(
+            1100,
+            1220
+        );
+
+        ctx.stroke();
+
+
+        /* =========================================
+           NOMES
+        ========================================= */
+
+        ctx.fillStyle = "#222";
+
+        ctx.font =
+            "bold 21px Arial";
+
+
+        ctx.fillText(
+            "Soane Reis",
+            300,
+            1255
+        );
+
+
+        ctx.fillText(
+            "Lucas Oliveira",
+            900,
+            1255
+        );
+
+
+        ctx.fillStyle = "#555";
+
+        ctx.font =
+            "18px Arial";
+
+
+        ctx.fillText(
+            "Melhor Namorada do Mundo",
+            300,
+            1285
+        );
+
+
+        ctx.fillText(
+            "Namorado e avaliador",
+            900,
+            1285
+        );
+
+
+        /* =========================================
+           LINHA DO RODAPÉ
+        ========================================= */
+
+        ctx.strokeStyle = "#d5bd7a";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            90,
+            1360
+        );
+
+        ctx.lineTo(
+            1110,
+            1360
+        );
+
+        ctx.stroke();
+
+
+        /* =========================================
+           RODAPÉ
+        ========================================= */
+
+        ctx.fillStyle = "#333";
+
+        ctx.font =
+            "bold 17px Arial";
+
+
+        ctx.textAlign = "left";
+
+        ctx.fillText(
+            "Certificado Nº SOSO-0001",
+            90,
+            1405
+        );
+
+
+        ctx.textAlign = "right";
+
+        ctx.fillText(
+            "Validade: para sempre ❤️",
+            1110,
+            1405
+        );
+
+
+        ctx.textAlign = "center";
+
+        ctx.fillStyle = "#555";
+
+        ctx.font =
+            "16px Arial";
+
+        ctx.fillText(
+            "🔒 Documento irrevogável e intransferível",
+            largura / 2,
+            1465
+        );
+
+
+        /* =========================================
+           TRANSFORMA EM PNG
+        ========================================= */
+
+        const blob =
+            await new Promise(resolve => {
+
+                canvas.toBlob(
+                    resolve,
+                    "image/png"
+                );
+
+            });
+
+
+        if (!blob) {
+
+            throw new Error(
+                "Não foi possível gerar a imagem."
+            );
+
+        }
+
+
+        /* =========================================
+           CRIA ARQUIVO
+        ========================================= */
+
+        const arquivo =
+            new File(
+
+                [blob],
+
+                "certificado-soane.png",
+
+                {
+                    type: "image/png"
+                }
+
+            );
+
+
+        /* =========================================
+           CELULAR → COMPARTILHAR
+        ========================================= */
+
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [arquivo]
+            })
+        ) {
+
+            await navigator.share({
+
+                files: [arquivo],
+
+                title:
+                    "Certificado Oficial da Soso ❤️",
+
+                text:
+                    "Documento extremamente oficial 😂❤️"
+
+            });
+
+            return;
+
+        }
+
+
+        /* =========================================
+           PC → DOWNLOAD
+        ========================================= */
+
+        const url =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href =
+            url;
+
+        link.download =
+            "certificado-soane.png";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        setTimeout(() => {
+
+            URL.revokeObjectURL(url);
+
+        }, 1000);
+
+
+    } catch (erro) {
+
+        if (
+            erro.name === "AbortError"
+        ) {
+
+            return;
+
+        }
+
+
+        console.error(
+            "Erro ao gerar certificado:",
+            erro
+        );
+
+
+        alert(
+            "Não consegui gerar o certificado 😭"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCREVER TEXTO COM QUEBRA AUTOMÁTICA
+========================================================= */
+
+function escreverTextoCentralizado(
+    ctx,
+    texto,
+    x,
+    y,
+    larguraMaxima,
+    alturaLinha
+) {
+
+    const palavras =
+        texto.split(" ");
+
+    let linha = "";
+
+    const linhas = [];
+
+
+    for (
+        let i = 0;
+        i < palavras.length;
+        i++
+    ) {
+
+        const teste =
+            linha +
+            palavras[i] +
+            " ";
+
+
+        const larguraTeste =
+            ctx.measureText(
+                teste
+            ).width;
+
+
+        if (
+            larguraTeste >
+            larguraMaxima &&
+            linha !== ""
+        ) {
+
+            linhas.push(
+                linha.trim()
+            );
+
+            linha =
+                palavras[i] +
+                " ";
+
+        } else {
+
+            linha = teste;
+
+        }
+
+    }
+
+
+    if (linha.trim() !== "") {
+
+        linhas.push(
+            linha.trim()
+        );
+
+    }
+
+
+    linhas.forEach(
+        (linhaAtual, indice) => {
+
+            ctx.fillText(
+                linhaAtual,
+                x,
+                y +
+                indice *
+                alturaLinha
+            );
+
+        }
+    );
+
+
+    return (
+        y +
+        linhas.length *
+        alturaLinha
+    );
+
+}
+
+
+/* =========================================================
+   CARREGAR ASSINATURA
+========================================================= */
+
+function carregarImagemCertificado(src) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const imagem =
+                new Image();
+
+
+            imagem.onload = () => {
+
+                resolve(
+                    imagem
+                );
+
+            };
+
+
+            imagem.onerror = () => {
+
+                reject(
+                    new Error(
+                        "Erro ao carregar assinatura."
+                    )
+                );
+
+            };
+
+
+            imagem.src = src;
+
+        }
+    );
+
+}
