@@ -561,35 +561,35 @@ function abrirMomentos() {
 
 const fotosGaleria = [
     {
-        imagem: "foto1.jpeg",
+        imagem: "arquivos/foto1.jpeg",
         titulo: "A princesa do HS 🏥",
         texto: "Linda, maravilhosa, minha branquinha no trabalho",
         selo: "TRABALHADORA👸"
     },
 
     {
-        imagem: "foto2.jpeg",
+        imagem: "arquivos/foto2.jpeg",
         titulo: "A gatinha pequena 📸",
         texto: "Desde pequenininha com a carinha bontinha e gaiata ❤️",
         selo: "LINDINHA 👧"
     },
 
     {
-        imagem: "foto3.jpeg",
+        imagem: "arquivos/foto3.jpeg",
         titulo: "A Bela e a Fera ❤️",
         texto: "Me estressou no dia falando do passado, mas eu amo kkkkkkkkk",
         selo: "ME FAZ RAIVA😡"
     },
 
     {
-        imagem: "foto4.jpeg",
+        imagem: "arquivos/foto4.jpeg",
         titulo: "Mimando a bonitinha 👜",
         texto: "Essa é linda, eu segurando a bolsa da bonitinha e ela fazendo graça",
         selo: "MIMADA 💅🏻"
     },
 
     {
-        imagem: "foto5.jpeg",
+        imagem: "arquivos/foto5.jpeg",
         titulo: "Gaiatinha desde pequena 🤡",
         texto: "A mesma coisa de hoje, gaiatinha, bonitinha, linda, te amo ❤️",
         selo: "MINHA FAVORITA ❤️"
