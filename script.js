@@ -2414,7 +2414,7 @@ function confirmarAssinaturaBocal() {
     if (!assinaturaFoiDesenhadaBocal) {
 
         erro.textContent =
-            "Ô boçal, assine o documento primeiro 😂✍️";
+            "Neguinha, assine o documento primeiro 😂✍️";
 
         return;
 
@@ -3138,7 +3138,7 @@ async function salvarECompartilharCertificado() {
                     "Certificado Oficial da Soso ❤️",
 
                 text:
-                    "Documento extremamente oficial 😂❤️"
+                    "Documento oficial ❤️"
 
             });
 
