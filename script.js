@@ -530,11 +530,32 @@ function voltarAoMenu() {
     document.getElementById("paginaESe").style.display = "none";
     document.getElementById("menu").style.display = "flex";
     document.getElementById("paginaSosoBrava").style.display = "none";
+
 const paginaCertificado = document.getElementById("paginaCertificadoBocal");
 
 if (paginaCertificado) {
     paginaCertificado.style.display = "none";
 }
+
+const paginaProximoEncontro =
+    document.getElementById("paginaProximoEncontro");
+
+if (paginaProximoEncontro) {
+    paginaProximoEncontro.style.display = "none";
+}
+
+if (intervaloProximoEncontro) {
+    clearInterval(intervaloProximoEncontro);
+    intervaloProximoEncontro = null;
+}
+
+const paginaListaDesejos =
+    document.getElementById("paginaListaDesejos");
+
+if (paginaListaDesejos) {
+    paginaListaDesejos.style.display = "none";
+}
+
     window.scrollTo(0, 0);
 
     salvarTelaAtual("menu");
@@ -1179,6 +1200,27 @@ if (telaAtual === "quiz") {
         atualizarGaleria();
 
     }
+
+
+    else if (telaAtual === "proximoEncontro") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaProximoEncontro").style.display = "flex";
+
+    carregarProximoEncontro();
+}
+
+else if (telaAtual === "listaDesejos") {
+
+    document.getElementById("telaSenha").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+
+    document.getElementById("paginaListaDesejos").style.display = "flex";
+
+    renderizarDesejos();
+}
 
     /* =========================
        RECLAMAÇÕES
@@ -3343,4 +3385,847 @@ function carregarImagemCertificado(src) {
         }
     );
 
+}
+
+/* ========================================
+   PRÓXIMO ENCONTRO
+======================================== */
+
+/*
+    É SÓ ALTERAR ESSAS INFORMAÇÕES
+    QUANDO VOCÊS MARCAREM UM ENCONTRO
+*/
+
+const proximoEncontro = {
+
+    // formato: ANO-MÊS-DIA
+    data: "2026-09-27",
+
+    // formato: HORA:MINUTO
+    horario: "15:00",
+
+    local: "Rede Andrade Ondina",
+
+     maps: "https://maps.app.goo.gl/RLjgDxD2ig2UkXQ36",
+
+    // escreva aqui a SUA frase
+    recado: "VOU FICAR AGARRADINHO COM MEU QUEIJO DO REINO ❤️"
+};
+
+
+let intervaloProximoEncontro = null;
+
+
+function abrirProximoEncontro() {
+
+    const menu = document.getElementById("menu");
+    const pagina = document.getElementById("paginaProximoEncontro");
+
+    if (menu) {
+        menu.style.display = "none";
+    }
+
+    if (pagina) {
+        pagina.style.display = "flex";
+    }
+
+    salvarTelaAtual("proximoEncontro");
+
+    carregarProximoEncontro();
+
+    window.scrollTo(0, 0);
+}
+
+
+function carregarProximoEncontro() {
+
+    const data = criarDataProximoEncontro();
+
+    mostrarInformacoesEncontro(data);
+
+    atualizarContagemEncontro();
+
+    if (intervaloProximoEncontro) {
+        clearInterval(intervaloProximoEncontro);
+    }
+
+    intervaloProximoEncontro = setInterval(
+        atualizarContagemEncontro,
+        1000
+    );
+}
+
+
+function criarDataProximoEncontro() {
+
+    const partesData = proximoEncontro.data.split("-");
+    const partesHorario = proximoEncontro.horario.split(":");
+
+    const ano = Number(partesData[0]);
+    const mes = Number(partesData[1]) - 1;
+    const dia = Number(partesData[2]);
+
+    const hora = Number(partesHorario[0]);
+    const minuto = Number(partesHorario[1]);
+
+    return new Date(
+        ano,
+        mes,
+        dia,
+        hora,
+        minuto,
+        0
+    );
+}
+
+
+function mostrarInformacoesEncontro(data) {
+
+    const diaSemana = document.getElementById("diaSemanaEncontro");
+    const dataTexto = document.getElementById("dataEncontro");
+    const horario = document.getElementById("horarioEncontro");
+    const local = document.getElementById("localEncontro");
+    const linkLocal = document.getElementById("linkLocalEncontro");
+    const recado = document.getElementById("recadoProximoEncontro");
+
+
+    if (diaSemana) {
+
+        diaSemana.textContent =
+            data
+                .toLocaleDateString(
+                    "pt-BR",
+                    { weekday: "long" }
+                )
+                .toUpperCase();
+    }
+
+
+    if (dataTexto) {
+
+        dataTexto.textContent =
+            data
+                .toLocaleDateString(
+                    "pt-BR",
+                    {
+                        day: "2-digit",
+                        month: "long"
+                    }
+                )
+                .toUpperCase();
+    }
+
+
+    if (horario) {
+        horario.textContent = proximoEncontro.horario;
+    }
+
+
+    if (local) {
+        local.textContent = proximoEncontro.local;
+    }
+
+    if (linkLocal) {
+    linkLocal.href = proximoEncontro.maps;
+}
+
+    if (recado) {
+        recado.textContent = proximoEncontro.recado;
+    }
+}
+
+
+function atualizarContagemEncontro() {
+
+    const agora = new Date();
+
+    const encontro = criarDataProximoEncontro();
+
+    const diferenca = encontro - agora;
+
+
+    const elementoDias =
+        document.getElementById("diasEncontro");
+
+    const elementoHoras =
+        document.getElementById("horasEncontro");
+
+    const elementoMinutos =
+        document.getElementById("minutosEncontro");
+
+    const elementoSegundos =
+        document.getElementById("segundosEncontro");
+
+    const mensagem =
+        document.getElementById("mensagemEncontro");
+
+
+    /*
+        ENCONTRO JÁ CHEGOU
+    */
+
+    if (diferenca <= 0) {
+
+        if (elementoDias) elementoDias.textContent = "00";
+        if (elementoHoras) elementoHoras.textContent = "00";
+        if (elementoMinutos) elementoMinutos.textContent = "00";
+        if (elementoSegundos) elementoSegundos.textContent = "00";
+
+        if (mensagem) {
+            mensagem.textContent =
+                "❤️ CHEGOU O DIA! VOU FICAR AGARRADINHO COM SOSO.";
+        }
+
+        if (intervaloProximoEncontro) {
+            clearInterval(intervaloProximoEncontro);
+            intervaloProximoEncontro = null;
+        }
+
+        return;
+    }
+
+
+    /*
+        CÁLCULO DO TEMPO
+    */
+
+    const segundosTotais =
+        Math.floor(diferenca / 1000);
+
+    const dias =
+        Math.floor(segundosTotais / 86400);
+
+    const horas =
+        Math.floor((segundosTotais % 86400) / 3600);
+
+    const minutos =
+        Math.floor((segundosTotais % 3600) / 60);
+
+    const segundos =
+        segundosTotais % 60;
+
+
+    if (elementoDias) {
+        elementoDias.textContent =
+            String(dias).padStart(2, "0");
+    }
+
+    if (elementoHoras) {
+        elementoHoras.textContent =
+            String(horas).padStart(2, "0");
+    }
+
+    if (elementoMinutos) {
+        elementoMinutos.textContent =
+            String(minutos).padStart(2, "0");
+    }
+
+    if (elementoSegundos) {
+        elementoSegundos.textContent =
+            String(segundos).padStart(2, "0");
+    }
+
+
+    /*
+        MENSAGENS AUTOMÁTICAS
+    */
+
+    const horasTotais =
+        diferenca / (1000 * 60 * 60);
+
+
+    if (horasTotais <= 24) {
+
+        if (mensagem) {
+            mensagem.textContent =
+                "É AMANHÃ! Falta muito pouco ❤️";
+        }
+
+    } else {
+
+        if (mensagem) {
+            mensagem.textContent =
+                "❤️ Tá chegando viu...";
+        }
+    }
+
+
+    /*
+        SE JÁ FOR O MESMO DIA
+    */
+
+    const mesmoDia =
+        agora.getFullYear() === encontro.getFullYear() &&
+        agora.getMonth() === encontro.getMonth() &&
+        agora.getDate() === encontro.getDate();
+
+
+    if (mesmoDia && mensagem) {
+
+        mensagem.textContent =
+            "❤️ É HOJE!!! Finalmente vou ver neguinha.";
+    }
+}
+
+/* ========================================
+   LISTA DE DESEJOS DA SOSO
+======================================== */
+
+let desejosSoso = JSON.parse(
+    localStorage.getItem("desejosSoso")
+) || [];
+
+
+/* ABRIR PÁGINA */
+
+function abrirListaDesejos() {
+
+    const menu = document.getElementById("menu");
+    const pagina = document.getElementById("paginaListaDesejos");
+
+    if (menu) {
+        menu.style.display = "none";
+    }
+
+    if (pagina) {
+        pagina.style.display = "flex";
+    }
+
+    salvarTelaAtual("listaDesejos");
+
+    renderizarDesejos();
+
+    window.scrollTo(0, 0);
+}
+
+
+/* IDENTIFICAR LOJA */
+
+function identificarLojaPeloLink(link) {
+
+    const linkMinusculo = link.toLowerCase();
+
+    if (
+        linkMinusculo.includes("shein.com") ||
+        linkMinusculo.includes("shein.com.br") ||
+        linkMinusculo.includes("onelink.shein.com")
+    ) {
+        return "SHEIN";
+    }
+
+    if (
+        linkMinusculo.includes("tiktok.com") ||
+        linkMinusculo.includes("shop.tiktok")
+    ) {
+        return "TikTok Shop";
+    }
+
+    return "Outra loja";
+}
+
+function extrairLinkDesejo(texto) {
+
+    if (!texto) return "";
+
+    const encontrou = texto.match(/https?:\/\/[^\s\]\)]+/i);
+
+    if (!encontrou) {
+        return "";
+    }
+
+    return encontrou[0];
+}
+
+
+function identificarLojaDesejo() {
+
+    const input = document.getElementById("linkDesejo");
+    const resultado = document.getElementById("lojaIdentificada");
+
+    if (!input || !resultado) return;
+
+    const textoColado = input.value.trim();
+
+    if (textoColado === "") {
+
+        resultado.textContent =
+            "🔍 Cole um link para identificar a loja";
+
+        return;
+    }
+
+    const link = extrairLinkDesejo(textoColado);
+
+    if (!link) {
+
+        resultado.textContent =
+            "⚠️ Nenhum link encontrado";
+
+        return;
+    }
+
+    const loja = identificarLojaPeloLink(link);
+
+    if (loja === "SHEIN") {
+
+        resultado.textContent =
+            "🛍️ Loja identificada: SHEIN ✓";
+
+    } else if (loja === "TikTok Shop") {
+
+        resultado.textContent =
+            "🎵 Loja identificada: TikTok Shop ✓";
+
+    } else {
+
+        resultado.textContent =
+            "🌐 Loja identificada: Outra loja";
+    }
+}
+
+
+/* CONVERTER PREÇO */
+
+function converterPrecoDesejo(valor) {
+
+    let texto = valor
+        .trim()
+        .replace(/R\$/gi, "")
+        .replace(/\s/g, "");
+
+
+    /*
+        Exemplo:
+        1.299,90
+        vira
+        1299.90
+    */
+
+    if (texto.includes(",")) {
+
+        texto = texto
+            .replace(/\./g, "")
+            .replace(",", ".");
+
+    }
+
+    const numero = Number(texto);
+
+    if (!Number.isFinite(numero)) {
+        return null;
+    }
+
+    if (numero <= 0) {
+        return null;
+    }
+
+    return numero;
+}
+
+
+/* VALIDAR LINK */
+
+function linkDesejoValido(link) {
+
+    try {
+
+        const url = new URL(link);
+
+        return (
+            url.protocol === "http:" ||
+            url.protocol === "https:"
+        );
+
+    } catch {
+
+        return false;
+    }
+}
+
+
+/* ADICIONAR PRODUTO */
+
+function adicionarDesejo() {
+
+    const campoLink =
+        document.getElementById("linkDesejo");
+
+    const campoNome =
+        document.getElementById("nomeDesejo");
+
+    const campoPreco =
+        document.getElementById("precoDesejo");
+
+    const erro =
+        document.getElementById("erroDesejo");
+
+
+    if (!campoLink || !campoNome || !campoPreco) {
+        return;
+    }
+
+
+    const textoLink = campoLink.value.trim();
+
+const link = textoLink !== ""
+    ? extrairLinkDesejo(textoLink)
+    : "";
+    const nome = campoNome.value.trim();
+    const preco = converterPrecoDesejo(
+        campoPreco.value
+    );
+
+
+    if (erro) {
+        erro.textContent = "";
+    }
+
+
+   /* LINK É OPCIONAL */
+
+if (link !== "" && !linkDesejoValido(link)) {
+
+    if (erro) {
+        erro.textContent =
+            "Esse link não parece válido 👀";
+    }
+
+    return;
+
+    
+
+}
+
+if (textoLink !== "" && link === "") {
+
+    if (erro) {
+        erro.textContent =
+            "Não encontrei nenhum link nesse texto 👀";
+    }
+
+    return;
+}
+
+    /* NOME */
+
+    if (nome === "") {
+
+        if (erro) {
+            erro.textContent =
+                "Escreve o nome do produto ❤️";
+        }
+
+        return;
+    }
+
+
+    /* PREÇO */
+
+    if (preco === null) {
+
+        if (erro) {
+            erro.textContent =
+                "Coloca um preço válido. Ex: 89,90";
+        }
+
+        return;
+    }
+
+
+    const loja =
+    link !== ""
+        ? identificarLojaPeloLink(link)
+        : "";
+
+    const novoDesejo = {
+
+        id: Date.now(),
+
+        nome: nome,
+
+        preco: preco,
+
+        link: link,
+
+        loja: loja
+    };
+
+
+    desejosSoso.push(novoDesejo);
+
+
+    salvarDesejosSoso();
+
+
+    /* LIMPAR CAMPOS */
+
+    campoLink.value = "";
+    campoNome.value = "";
+    campoPreco.value = "";
+
+
+    const lojaIdentificada =
+        document.getElementById("lojaIdentificada");
+
+    if (lojaIdentificada) {
+
+        lojaIdentificada.textContent =
+            "🔍 Cole um link para identificar a loja";
+    }
+
+
+    renderizarDesejos();
+}
+
+
+/* SALVAR */
+
+function salvarDesejosSoso() {
+
+    localStorage.setItem(
+        "desejosSoso",
+        JSON.stringify(desejosSoso)
+    );
+}
+
+
+/* FORMATAR DINHEIRO */
+
+function formatarDinheiroDesejo(valor) {
+
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+}
+
+
+/* SEGURANÇA DO TEXTO */
+
+function escaparHTMLDesejo(texto) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = texto;
+
+    return div.innerHTML;
+}
+
+
+/* RENDERIZAR CARRINHO */
+
+function renderizarDesejos() {
+
+    const lista =
+        document.getElementById("listaProdutosDesejos");
+
+    const vazio =
+        document.getElementById("carrinhoVazioSoso");
+
+    const quantidade =
+        document.getElementById("quantidadeDesejos");
+
+    const resumo =
+        document.getElementById("resumoDesejos");
+
+    const totalElemento =
+        document.getElementById("totalDesejos");
+
+    const botaoWhats =
+        document.getElementById("botaoCompartilharDesejos");
+
+
+    if (!lista) return;
+
+
+    lista.innerHTML = "";
+
+
+    /* QUANTIDADE */
+
+    if (quantidade) {
+
+        quantidade.textContent =
+            desejosSoso.length === 1
+                ? "1 produto"
+                : `${desejosSoso.length} produtos`;
+    }
+
+
+    /* CARRINHO VAZIO */
+
+    if (desejosSoso.length === 0) {
+
+        if (vazio) {
+            vazio.style.display = "block";
+        }
+
+        if (resumo) {
+            resumo.style.display = "none";
+        }
+
+        if (botaoWhats) {
+            botaoWhats.style.display = "none";
+        }
+
+        return;
+    }
+
+
+    if (vazio) {
+        vazio.style.display = "none";
+    }
+
+    if (resumo) {
+        resumo.style.display = "flex";
+    }
+
+    if (botaoWhats) {
+        botaoWhats.style.display = "block";
+    }
+
+
+    let total = 0;
+
+
+    desejosSoso.forEach((produto) => {
+
+        total += produto.preco;
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "card-desejo";
+
+
+        card.innerHTML = `
+            <div class="topo-card-desejo">
+
+                <div class="info-card-desejo">
+
+                    <span class="loja-card-desejo">
+                        ${escaparHTMLDesejo(produto.loja)}
+                    </span>
+
+                    <div class="nome-card-desejo">
+                        ${escaparHTMLDesejo(produto.nome)}
+                    </div>
+
+                    <strong class="preco-card-desejo">
+                        ${formatarDinheiroDesejo(produto.preco)}
+                    </strong>
+
+                </div>
+
+                <button
+                    class="botao-remover-desejo"
+                    onclick="removerDesejo(${produto.id})"
+                    title="Remover produto"
+                >
+                    🗑️
+                </button>
+
+            </div>
+        `;
+
+
+        lista.appendChild(card);
+    });
+
+
+    if (totalElemento) {
+
+        totalElemento.textContent =
+            formatarDinheiroDesejo(total);
+    }
+}
+
+    if (produto.link) {
+    mensagem += `🔗 ${produto.link}\n`;
+}
+
+mensagem += "\n";
+
+
+/* REMOVER */
+
+function removerDesejo(id) {
+
+    desejosSoso =
+        desejosSoso.filter(
+            produto => produto.id !== id
+        );
+
+
+    salvarDesejosSoso();
+
+    renderizarDesejos();
+}
+
+
+/* COMPARTILHAR PELO WHATSAPP */
+
+function compartilharDesejosWhatsApp() {
+
+    if (desejosSoso.length === 0) {
+        return;
+    }
+
+
+    let total = 0;
+
+
+    let mensagem =
+        "*Lista de Desejos da Soso*\n\n";
+
+
+    desejosSoso.forEach(
+        (produto, indice) => {
+
+            total += produto.preco;
+
+
+            mensagem +=
+                `${indice + 1}. *${produto.nome}*\n`;
+
+            mensagem +=
+                ` ${produto.loja}\n`;
+
+            mensagem +=
+                `${formatarDinheiroDesejo(produto.preco)}\n`;
+
+            mensagem +=
+                ` ${produto.link}\n\n`;
+        }
+    );
+
+
+    mensagem +=
+        ` *TOTAL: ${formatarDinheiroDesejo(total)}*\n\n`;
+
+    mensagem +=
+        "Compra pra mim, meu amor\n\n";
+
+
+    /*
+        ABRE O WHATSAPP.
+        NÃO PRECISA COLOCAR SEU NÚMERO NO CÓDIGO.
+    */
+
+    const url =
+        "https://wa.me/?text=" +
+        encodeURIComponent(mensagem);
+
+
+    window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+    );
 }

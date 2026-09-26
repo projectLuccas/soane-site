@@ -137,6 +137,11 @@
                 📊 Nossas Estatísticas
                 <small>Ver nossos números</small>
             </button>
+            
+            <button onclick="abrirProximoEncontro()">
+                📅 Próximo Encontro
+                <small>Quando vou ver neguinha de novo? ❤️</small>
+            </button>
 
             <button onclick="abrirMomentos()">
                 📸 Nossos Momentos
@@ -153,6 +158,10 @@
                 <small>Vamo ver se neguinha vai conseguir mais um diploma...</small>
             </button>
 
+            <button onclick="abrirListaDesejos()">
+                🎁 Lista de Desejos da Soso
+                 <small>Isso é apenas um teste viu bonitinha, sai de bolo</small>
+            </button>
 
             <button onclick="abrirSosoBrava()">
                 😡 Soso tá Brava
@@ -230,6 +239,94 @@
 
 </div>
 
+<!-- =========================
+     PRÓXIMO ENCONTRO
+========================= -->
+<div id="paginaProximoEncontro" class="pagina-extra">
+
+    <div class="caixa-extra caixa-proximo-encontro">
+
+        <div class="icone-encontro">❤️</div>
+
+        <h1>Próximo Encontro</h1>
+<br>
+        <p class="subtitulo-encontro" id="mensagemEncontro">
+            Tá chegando... ❤️
+        </p>
+
+        <div class="data-encontro">
+            <span id="diaSemanaEncontro"></span>
+            <strong id="dataEncontro"></strong>
+        </div>
+
+        <div class="informacoes-encontro">
+            <div>
+                <span>🕐</span>
+                <p>Horário</p>
+                <strong id="horarioEncontro"></strong>
+            </div>
+
+            <div>
+    <span>📍</span>
+    <p>Local</p>
+
+    <a id="linkLocalEncontro"
+       class="link-local-encontro"
+       href="#"
+       target="_blank"
+       rel="noopener noreferrer">
+        <strong id="localEncontro"></strong>
+    </a>
+</div>
+        </div>
+
+        <div class="area-contagem-encontro">
+
+            <p>⏳ FALTAM</p>
+
+            <div class="contador-encontro">
+
+                <div>
+                    <strong id="diasEncontro">00</strong>
+                    <span>dias</span>
+                </div>
+
+                <div>
+                    <strong id="horasEncontro">00</strong>
+                    <span>horas</span>
+                </div>
+
+                <div>
+                    <strong id="minutosEncontro">00</strong>
+                    <span>min</span>
+                </div>
+
+                <div>
+                    <strong id="segundosEncontro">00</strong>
+                    <span>seg</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SUA ÚNICA FRASE -->
+        <div class="recado-encontro">
+            <span>💌</span>
+            <p id="recadoProximoEncontro"></p>
+        </div>
+
+        <button class="botao-voltar-jogos"
+                onclick="voltarAoMenu()">
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
+
+
+
 <div id="paginaMomentos" class="pagina-extra">
 
     <div class="galeria-container">
@@ -288,6 +385,150 @@
     
 
         <button class="botao-voltar-galeria" onclick="voltarAoMenu()">
+            🏠 Voltar ao menu
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ======================================
+     LISTA DE DESEJOS DA SOSO
+======================================= -->
+
+<div id="paginaListaDesejos" class="pagina-extra">
+
+    <div class="caixa-extra caixa-lista-desejos">
+
+        <div class="icone-desejos">🎁</div>
+
+        <h1>Lista de Desejos da Soso</h1>
+
+        <p class="subtitulo-desejos">
+        Tenha misericordia de seu neguinho nessa porra rapaz pelo amor de Deus 👀
+        </p>
+
+
+        <!-- FORMULÁRIO -->
+
+        <div class="form-desejos">
+
+            <label for="linkDesejo">
+                🔗 Link do produto <small>(opcional)</small>
+            </label>
+
+            <input
+                type="url"
+                id="linkDesejo"
+                placeholder="Cole o link da Shein ou TikTok Shop"
+                oninput="identificarLojaDesejo()"
+            >
+
+            <div id="lojaIdentificada" class="loja-identificada">
+                🔍 Cole um link para identificar a loja
+            </div>
+
+
+            <label for="nomeDesejo">
+                🎁 Nome do produto
+            </label>
+
+            <input
+                type="text"
+                id="nomeDesejo"
+                placeholder="Ex: Capinha de celular"
+                maxlength="80"
+            >
+
+
+            <label for="precoDesejo">
+                💰 Preço
+            </label>
+
+            <input
+                type="text"
+                id="precoDesejo"
+                placeholder="Bote o preço correto, Ex: 89,90"
+                inputmode="decimal"
+            >
+
+
+            <button
+                class="botao-adicionar-desejo"
+                onclick="adicionarDesejo()"
+            >
+                ❤️ Adicionar à minha lista
+            </button>
+
+            <p id="erroDesejo" class="erro-desejo"></p>
+
+        </div>
+
+
+        <!-- CARRINHO -->
+
+        <div class="cabecalho-carrinho-soso">
+
+            <div>
+                <span>🛍️</span>
+
+                <div>
+                    <h2>Carrinho da Soso</h2>
+                    <p id="quantidadeDesejos">0 produtos</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PRODUTOS CRIADOS PELO JS -->
+
+        <div id="listaProdutosDesejos" class="lista-produtos-desejos"></div>
+
+
+        <!-- CARRINHO VAZIO -->
+
+        <div id="carrinhoVazioSoso" class="carrinho-vazio-soso">
+
+            <div>🛍️</div>
+
+            <strong>A lista ainda está vazia</strong>
+
+            <p>
+                Escolha com calma nessa porra viu 😂
+            </p>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div id="resumoDesejos" class="resumo-desejos">
+
+            <span>Total dos desejos</span>
+
+            <strong id="totalDesejos">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <!-- WHATSAPP -->
+
+        <button
+            id="botaoCompartilharDesejos"
+            class="botao-whatsapp-desejos"
+            onclick="compartilharDesejosWhatsApp()"
+        >
+            💚 Compartilhar no WhatsApp
+        </button>
+
+
+        <button
+            class="botao-voltar-jogos"
+            onclick="voltarAoMenu()"
+        >
             🏠 Voltar ao menu
         </button>
 

@@ -31,7 +31,7 @@ body {
 }
 
 
-.heart {
+.heart, .icone-desejos {
     font-size: 60px;
 
     animation: bater 1s infinite;
@@ -2928,4 +2928,538 @@ p {
 
 .texto-amor-diploma {
     word-spacing: 3px;
+}
+
+/* ========================================
+   PRÓXIMO ENCONTRO
+======================================== */
+
+.caixa-proximo-encontro {
+    text-align: center;
+}
+
+.icone-encontro {
+    font-size: 52px;
+    margin-bottom: 5px;
+    animation: pulsarEncontro 1.5s infinite;
+}
+
+@keyframes pulsarEncontro {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+.caixa-proximo-encontro h1 {
+    color: #e63964;
+    margin-bottom: 5px;
+}
+
+.subtitulo-encontro {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+
+/* DATA */
+
+.data-encontro {
+    margin: 15px 0 20px;
+}
+
+.data-encontro span {
+    display: block;
+    color: #777;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.data-encontro strong {
+    display: block;
+    color: #e63964;
+    font-family: Georgia, serif;
+    font-size: 30px;
+}
+
+
+/* HORÁRIO + LOCAL */
+
+.informacoes-encontro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.informacoes-encontro > div {
+    background: #fff5f7;
+    border: 1px solid #ffd1dc;
+    border-radius: 14px;
+    padding: 14px 8px;
+}
+
+.informacoes-encontro > div > span {
+    font-size: 25px;
+}
+
+.informacoes-encontro p {
+    font-size: 12px;
+    color: #888;
+    margin: 5px 0;
+}
+
+.informacoes-encontro strong {
+    color: #444;
+    font-size: 15px;
+}
+
+
+/* CONTADOR */
+
+.area-contagem-encontro {
+    background: linear-gradient(135deg, #fff0f4, #ffe5ed);
+    border: 1px solid #ffc2d1;
+    border-radius: 18px;
+    padding: 18px 10px;
+    margin: 15px 0;
+}
+
+.area-contagem-encontro > p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #e63964;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.contador-encontro {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+
+.contador-encontro div {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 4px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.contador-encontro strong {
+    display: block;
+    font-size: 25px;
+    color: #e63964;
+}
+
+.contador-encontro span {
+    display: block;
+    margin-top: 3px;
+    color: #777;
+    font-size: 10px;
+}
+
+
+/* RECADO */
+
+.recado-encontro {
+    background: white;
+    border-left: 4px solid #e63964;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 18px 0;
+    text-align: left;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.recado-encontro > span {
+    font-size: 22px;
+}
+
+.recado-encontro p {
+    color: #555;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 7px 0 0;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .icone-encontro {
+        font-size: 43px;
+    }
+
+    .caixa-proximo-encontro h1 {
+        font-size: 23px;
+    }
+
+    .data-encontro strong {
+        font-size: 25px;
+    }
+
+    .contador-encontro {
+        gap: 5px;
+    }
+
+    .contador-encontro div {
+        padding: 10px 2px;
+    }
+
+    .contador-encontro strong {
+        font-size: 21px;
+    }
+
+    .contador-encontro span {
+        font-size: 9px;
+    }
+
+    .informacoes-encontro {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.link-local-encontro {
+    display: inline-block;
+    color: #e63964;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.link-local-encontro strong {
+    color: #e63964;
+}
+
+.link-local-encontro:hover {
+    text-decoration: none;
+    transform: scale(1.03);
+}
+
+/* ========================================
+   LISTA DE DESEJOS DA SOSO
+======================================== */
+
+.caixa-lista-desejos {
+    text-align: center;
+}
+
+.icone-desejos {
+    font-size: 50px;
+    margin-bottom: 5px;
+}
+
+.caixa-lista-desejos h1 {
+    color: #e63964;
+    margin-bottom: 7px;
+}
+
+.subtitulo-desejos {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+
+/* FORMULÁRIO */
+
+.form-desejos {
+    background: #fff5f7;
+    border: 1px solid #ffd1dc;
+    border-radius: 16px;
+    padding: 17px;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.form-desejos label {
+    display: block;
+    color: #555;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 12px 0 6px;
+}
+
+.form-desejos label:first-child {
+    margin-top: 0;
+}
+
+.form-desejos input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-desejos input:focus {
+    border-color: #e63964;
+    box-shadow: 0 0 0 2px rgba(230, 57, 100, 0.10);
+}
+
+
+/* LOJA IDENTIFICADA */
+
+.loja-identificada {
+    margin-top: 7px;
+    padding: 8px 10px;
+    background: white;
+    border-radius: 8px;
+    color: #888;
+    font-size: 12px;
+}
+
+
+/* ADICIONAR */
+
+.botao-adicionar-desejo {
+    width: 100%;
+    margin-top: 17px;
+    padding: 12px;
+    border: none;
+    border-radius: 11px;
+    background: #e63964;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-adicionar-desejo:hover {
+    transform: scale(1.02);
+    background: #d72f58;
+}
+
+.erro-desejo {
+    color: #d63031;
+    font-size: 12px;
+    text-align: center;
+    min-height: 15px;
+    margin-top: 8px;
+}
+
+
+/* CABEÇALHO CARRINHO */
+
+.cabecalho-carrinho-soso {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.cabecalho-carrinho-soso > div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.cabecalho-carrinho-soso > div > span {
+    font-size: 27px;
+}
+
+.cabecalho-carrinho-soso h2 {
+    color: #444;
+    font-size: 18px;
+    margin: 0;
+}
+
+.cabecalho-carrinho-soso p {
+    color: #999;
+    font-size: 12px;
+    margin: 2px 0 0;
+}
+
+
+/* LISTA */
+
+.lista-produtos-desejos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* CARD PRODUTO */
+
+.card-desejo {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: left;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.topo-card-desejo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.info-card-desejo {
+    min-width: 0;
+    flex: 1;
+}
+
+.loja-card-desejo {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-bottom: 7px;
+    border-radius: 20px;
+    background: #fff0f4;
+    color: #e63964;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.nome-card-desejo {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.preco-card-desejo {
+    display: block;
+    color: #e63964;
+    font-size: 19px;
+    margin-top: 6px;
+}
+
+
+/* BOTÃO REMOVER */
+
+
+
+
+.botao-remover-desejo:hover {
+    transform: scale(1.08);
+    background: #d80f0f;
+}
+
+
+/* LINK PRODUTO */
+
+.link-produto-desejo {
+    display: inline-block;
+    margin-top: 10px;
+    color: #e63964;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-produto-desejo:hover {
+    text-decoration: underline;
+}
+
+
+/* CARRINHO VAZIO */
+
+.carrinho-vazio-soso {
+    padding: 25px 10px;
+    color: #999;
+}
+
+.carrinho-vazio-soso > div {
+    font-size: 37px;
+    margin-bottom: 8px;
+}
+
+.carrinho-vazio-soso strong {
+    display: block;
+    color: #777;
+    font-size: 14px;
+}
+
+.carrinho-vazio-soso p {
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* TOTAL */
+
+.resumo-desejos {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 17px;
+    padding: 15px;
+    background: linear-gradient(135deg, #fff0f4, #ffe3eb);
+    border-radius: 13px;
+}
+
+.resumo-desejos span {
+    color: #666;
+    font-size: 13px;
+}
+
+.resumo-desejos strong {
+    color: #e63964;
+    font-size: 21px;
+}
+
+
+/* WHATSAPP */
+
+.botao-whatsapp-desejos {
+    display: none;
+    width: 100%;
+    margin-top: 12px;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: #25D366 !important;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-whatsapp-desejos:hover {
+    transform: scale(1.02);
+    background: #1ebe5d;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .caixa-lista-desejos {
+        width: calc(100% - 20px);
+        padding: 20px 16px;
+    }
+
+    .icone-desejos {
+        font-size: 42px;
+    }
+
+    .caixa-lista-desejos h1 {
+        font-size: 23px;
+    }
+
+    .form-desejos {
+        padding: 14px;
+    }
+
+    .resumo-desejos strong {
+        font-size: 19px;
+    }
 }
