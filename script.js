@@ -4218,9 +4218,13 @@ function compartilharDesejosWhatsApp() {
         NÃO PRECISA COLOCAR SEU NÚMERO NO CÓDIGO.
     */
 
-    const url =
-        "https://wa.me/?text=" +
-        encodeURIComponent(mensagem);
+    const numeroLuquinhas = "5571988214998";
+
+const url =
+    "https://wa.me/" +
+    numeroLuquinhas +
+    "?text=" +
+    encodeURIComponent(mensagem);
 
 
     window.open(
